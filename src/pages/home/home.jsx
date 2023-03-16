@@ -8,6 +8,8 @@ import { COLORS } from "../../styles/colors";
 import { MeetUs } from "./sections/ MeetUs";
 import { ServiceBlock } from "./sections/ServiceBlock";
 import { SimpleSlider } from "./sections/Slider";
+import { PageLayout } from "../../components/Layouts/PageLayout";
+import { useQuery } from "../../styles/breakpoints";
 
 const services = [
   {
@@ -34,44 +36,57 @@ const services = [
 ];
 
 export const Home = () => {
+  const { isTablet } = useQuery();
   return (
     <>
-      <Hero bgImage="./images/heroBg.png" />
-      <MeetUs />
-      <Text
-        fs="18px"
-        fw="600"
-        color={COLORS.gray}
-        padding="16px 24px"
-        backgroundColor={COLORS.white}
+      <PageLayout
+        heroImg="./images/heroBg.png"
+        heroText="POILSIS IR PRAMOGOS GAMTOJE"
+        heroBtnText="REZERVUOKITE VIETĄ"
       >
-        Mes Jums siūlome
-      </Text>
-      {services.map(({ title, description, img, id }, index) => {
-        return (
-          <ServiceBlock key={index} title={title} img={img} id={id}>
-            {description}
-          </ServiceBlock>
-        );
-      })}
-      <Text
-        fs="18px"
-        fw="600"
-        color={COLORS.gray}
-        padding="16px 24px"
-        backgroundColor={COLORS.white}
-      >
-        Klientai mus vertina
-      </Text>
-      <SliderBox>
-        <SimpleSlider />
-      </SliderBox>
-      <FlexWrapper flexDirection="column" gap="32px" padding="36px 0">
-        <Text align="center" fs="18px" fw="600" color={COLORS.gray}>
-          Turite klausimų?
+        <MeetUs />
+        <Text
+          fs={isTablet ? "32px" : "18px"}
+          align="left"
+          fw="600"
+          color={COLORS.gray}
+          padding={isTablet ? "50px 10% 20px 10%" : "16px 24px"}
+          backgroundColor={COLORS.white}
+        >
+          Mes Jums siūlome
         </Text>
-        <DefaultButton>SUSISIEKITE</DefaultButton>
-      </FlexWrapper>
+        {services.map(({ title, description, img, id }, index) => {
+          return (
+            <ServiceBlock
+              key={index}
+              title={title}
+              img={img}
+              id={id}
+              direction={index % 2 !== 0 ? "row-reverse" : "row"}
+            >
+              {description}
+            </ServiceBlock>
+          );
+        })}
+        <Text
+          fs="18px"
+          fw="600"
+          color={COLORS.gray}
+          padding="16px 24px"
+          backgroundColor={COLORS.white}
+        >
+          Klientai mus vertina
+        </Text>
+        <SliderBox>
+          <SimpleSlider />
+        </SliderBox>
+        <FlexWrapper flexDirection="column" gap="32px" padding="36px 0">
+          <Text align="center" fs="18px" fw="600" color={COLORS.gray}>
+            Turite klausimų?
+          </Text>
+          <DefaultButton>SUSISIEKITE</DefaultButton>
+        </FlexWrapper>
+      </PageLayout>
     </>
   );
 };

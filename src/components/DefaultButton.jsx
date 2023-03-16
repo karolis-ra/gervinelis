@@ -11,4 +11,6 @@ export const DefaultButton = styled(Link)`
   background-color: ${(props) =>
     props.reverse ? COLORS.creme : COLORS.forestGreen};
   align-self: center;
+  font-size: ${(props) => props.fs};
+  margin: ${(props) => props.margin};
 `;

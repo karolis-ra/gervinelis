@@ -4,8 +4,10 @@ import { Navigation } from "./Navigation";
 import { COLORS } from "../styles/colors";
 import { Text } from "./Text";
 import { DefaultButton } from "./DefaultButton";
+import { useQuery } from "../styles/breakpoints";
 
-export const Hero = ({ bgImage }) => {
+export const Hero = ({ bgImage, text, btnText }) => {
+  const { isTablet } = useQuery();
   return (
     <HeroWrapper bgImage={bgImage}>
       <Navigation />
@@ -15,12 +17,20 @@ export const Hero = ({ bgImage }) => {
           margin="0 auto"
           color={COLORS.white}
           align="center"
-          fs="24px"
+          fs={isTablet ? "56px" : "24px"}
           fw="700"
         >
-          POILSIS IR PRAMOGOS GAMTOJE
+          {text}
         </Text>
-        <DefaultButton reverse>REZERVUOKITE VIETĄ</DefaultButton>
+        {btnText && (
+          <DefaultButton
+            fs={isTablet ? "24px" : "16px"}
+            margin="32px 0 0 0"
+            reverse
+          >
+            {btnText}
+          </DefaultButton>
+        )}
       </HeroContent>
     </HeroWrapper>
   );

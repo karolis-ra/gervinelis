@@ -36,34 +36,27 @@ function SamplePrevArrow(props) {
 export const SimpleSlider = () => {
   const settings = {
     dots: true,
+
     infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
+        breakpoint: 900,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 650,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
     ],
@@ -80,7 +73,6 @@ export const SimpleSlider = () => {
               key={index}
               border={`1px solid ${COLORS.creme}`}
               padding="16px 0"
-              className="wow"
             >
               <Text
                 fw="600"
@@ -95,7 +87,8 @@ export const SimpleSlider = () => {
                 align="center"
                 margin="16px 0"
                 padding=" 0 24px"
-                height="300px"
+                height="250px"
+                color={COLORS.gray}
               >
                 {review}
               </Text>
@@ -114,7 +107,7 @@ export const SimpleSlider = () => {
 };
 
 const SliderWrapper = styled.div`
-  width: 70%;
+  width: 80%;
   padding: 16px;
   margin: 0 auto;
 `;
@@ -122,7 +115,7 @@ const SliderWrapper = styled.div`
 const StyledSlider = styled(Slider)`
   div.slick-slide > div {
     margin: 0 auto;
-    max-width: 220px;
+    max-width: 280px;
   }
 
   div.slick-list {
