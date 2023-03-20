@@ -4,6 +4,8 @@ import { FlexWrapper } from "../../../components/Wrappers/FlexWrapper";
 import { COLORS } from "../../../styles/colors";
 import { Image } from "../../../components/Image";
 import { useQuery } from "../../../styles/breakpoints";
+import { BodyTitle } from "../../../components/BodyTitle";
+import { BodyText } from "../../../components/BodyText";
 
 export const MeetUs = () => {
   const { isTablet } = useQuery();
@@ -35,25 +37,19 @@ export const MeetUs = () => {
           flex="1"
           justifyContent="center"
         >
-          <Text
-            fs={isTablet ? "24px" : "16px"}
-            fw="600"
-            color={COLORS.creme}
-            align="left"
-          >
+          <BodyTitle color={COLORS.creme} align="left">
             SUSIPAŽINKIME
-          </Text>
-          <Text
+          </BodyTitle>
+          <BodyText
             color={COLORS.white}
-            fs={isTablet ? "18px" : "16px"}
-            align={isTablet ? "left" : "center"}
+            align={!isTablet ? "left" : "center"}
             padding={isTablet && "0 80px 0 0"}
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illum
             placeat delectus veniam temporibus molestiae magni dolorum
             repellendus eligendi at animi, tempora autem rerum praesentium
             ratione maiores in quae quos.
-          </Text>
+          </BodyText>
         </FlexWrapper>
       </FlexWrapper>
     </FlexWrapper>

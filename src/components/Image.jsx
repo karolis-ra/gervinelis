@@ -8,4 +8,5 @@ export const Image = styled.img`
   margin: ${(props) => props.margin};
   height: ${(props) => props.height};
   flex: ${(props) => props.flex};
+  position: ${(props) => props.position};
 `;

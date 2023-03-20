@@ -5,5 +5,4 @@ export const navOptions = [
   { title: "APGYVENDINIMAS", link: "/apgyvendinimas" },
   { title: "PIRTYS, KUBILAI", link: "/pirtysirkubilai" },
   { title: "KONTAKTAI", link: "/kontaktai" },
-  {},
 ];

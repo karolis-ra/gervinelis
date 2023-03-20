@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { DefaultButton } from "../../components/DefaultButton";
-import { Hero } from "../../components/Hero";
 import { Text } from "../../components/Text";
 import { FlexWrapper } from "../../components/Wrappers/FlexWrapper";
 import { COLORS } from "../../styles/colors";
@@ -10,8 +9,9 @@ import { ServiceBlock } from "./sections/ServiceBlock";
 import { SimpleSlider } from "./sections/Slider";
 import { PageLayout } from "../../components/Layouts/PageLayout";
 import { useQuery } from "../../styles/breakpoints";
+import { BodyText } from "../../components/BodyText";
 
-const services = [
+export const services = [
   {
     title: "PLAUKIMAS BAIDARĖMIS",
     description:
@@ -43,6 +43,7 @@ export const Home = () => {
         heroImg="./images/heroBg.png"
         heroText="POILSIS IR PRAMOGOS GAMTOJE"
         heroBtnText="REZERVUOKITE VIETĄ"
+        contPadding="85px 0 135px 0"
       >
         <MeetUs />
         <Text
@@ -63,20 +64,22 @@ export const Home = () => {
               img={img}
               id={id}
               direction={index % 2 !== 0 ? "row-reverse" : "row"}
+              padding={isTablet ? "16px 10%" : "16px 24px"}
             >
               {description}
             </ServiceBlock>
           );
         })}
-        <Text
+        <BodyText
           fs="18px"
           fw="600"
           color={COLORS.gray}
-          padding="16px 24px"
           backgroundColor={COLORS.white}
+          padding="0 0 0 135px "
+          align="left"
         >
           Klientai mus vertina
-        </Text>
+        </BodyText>
         <SliderBox>
           <SimpleSlider />
         </SliderBox>

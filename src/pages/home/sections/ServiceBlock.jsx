@@ -5,12 +5,20 @@ import { COLORS } from "../../../styles/colors";
 import { Image } from "../../../components/Image";
 import { Link } from "react-router-dom";
 import { useQuery } from "../../../styles/breakpoints";
+import { BodyTitle } from "../../../components/BodyTitle";
 
-export const ServiceBlock = ({ img, title, children, id, direction }) => {
+export const ServiceBlock = ({
+  img,
+  title,
+  children,
+  id,
+  direction,
+  padding,
+}) => {
   const { isTablet } = useQuery();
   return (
     <FlexWrapper
-      padding={isTablet ? "16px 10%" : "16px 24px"}
+      padding={padding}
       flexDirection={isTablet ? `${direction}` : "column"}
       backgroundColor={COLORS.white}
       gap="24px"
@@ -21,10 +29,10 @@ export const ServiceBlock = ({ img, title, children, id, direction }) => {
 
       <FlexWrapper flexDirection="column" gap="24px" flex="1">
         <FlexWrapper flexDirection="column" gap="8px">
-          <Text fs="18px" fw="600" color={COLORS.forestGreen} align="left">
+          <BodyTitle color={COLORS.forestGreen} align="left">
             {title}
-          </Text>
-          <Text fs="16px" fw="400" color={COLORS.gray} align="left">
+          </BodyTitle>
+          <Text fw="400" color={COLORS.gray} align="left">
             {children}
           </Text>
         </FlexWrapper>

@@ -43,9 +43,9 @@ export const Footer = () => {
         justifyContent="center"
         gap={isTablet ? "36px" : "8px"}
       >
-        {navOptions.map((singleOption) => {
+        {navOptions.map((singleOption, index) => {
           return (
-            <Link to={singleOption.link}>
+            <Link key={`footerOption-${index}`} to={singleOption.link}>
               <Text align="center">{singleOption.title}</Text>
             </Link>
           );

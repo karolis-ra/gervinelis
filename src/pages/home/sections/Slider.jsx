@@ -74,16 +74,10 @@ export const SimpleSlider = () => {
               border={`1px solid ${COLORS.creme}`}
               padding="16px 0"
             >
-              <Text
-                fw="600"
-                fs="16px"
-                color={COLORS.forestGreen}
-                align="center"
-              >
+              <Text fw="600" color={COLORS.forestGreen} align="center">
                 {name}
               </Text>
               <Text
-                fs="16px"
                 align="center"
                 margin="16px 0"
                 padding=" 0 24px"

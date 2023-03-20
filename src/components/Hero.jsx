@@ -6,12 +6,12 @@ import { Text } from "./Text";
 import { DefaultButton } from "./DefaultButton";
 import { useQuery } from "../styles/breakpoints";
 
-export const Hero = ({ bgImage, text, btnText }) => {
+export const Hero = ({ bgImage, text, btnText, heroHeight, contPadding }) => {
   const { isTablet } = useQuery();
   return (
-    <HeroWrapper bgImage={bgImage}>
+    <HeroWrapper bgImage={bgImage} height={heroHeight}>
       <Navigation />
-      <HeroContent>
+      <HeroContent contPadding={contPadding}>
         <Text
           width="80%"
           margin="0 auto"
@@ -23,11 +23,7 @@ export const Hero = ({ bgImage, text, btnText }) => {
           {text}
         </Text>
         {btnText && (
-          <DefaultButton
-            fs={isTablet ? "24px" : "16px"}
-            margin="32px 0 0 0"
-            reverse
-          >
+          <DefaultButton fs={isTablet ? "24px" : "16px"} margin="32px 0 0 0">
             {btnText}
           </DefaultButton>
         )}
@@ -43,12 +39,13 @@ const HeroWrapper = styled.div`
   background-image: url(${(props) => props.bgImage});
   background-repeat: no-repeat;
   background-size: cover;
-  justify-content: center;
+  background-position: center;
+  min-height: ${(props) => props.height};
 `;
 
 const HeroContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 85px 0 135px 0;
+  padding: ${(props) => props.contPadding};
 `;

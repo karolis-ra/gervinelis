@@ -7,51 +7,63 @@ import { navOptions } from "../assets/navOptions";
 import { Text } from "./Text";
 import { Link } from "react-router-dom";
 import { DefaultButton } from "./DefaultButton";
+import { useDispatch } from "react-redux";
+import { openModal } from "../state/navigation/reducer";
+import { navigationSelector } from "../state/navigation/selector";
+import { useSelector } from "react-redux";
+import { NavModal } from "./NavModal";
 
 export const Navigation = () => {
   const { isTablet, isSmDesktop } = useQuery();
+  const dispatch = useDispatch();
+
+  const openNavModal = () => {
+    dispatch(openModal());
+  };
+
+  const { showModal } = useSelector(navigationSelector);
+
   return (
     <>
       {isSmDesktop ? (
         <NavWrapper>
           <Logo src="./images/react-logo.png" />
-          <FlexWrapper
+          <StyledWrapper
             flexDirection={isTablet ? "row" : "column"}
             justifyContent="center"
             alignItems="center"
             gap={isTablet ? "36px" : "8px"}
           >
-            {navOptions.map((singleOption) => {
+            {navOptions.map((singleOption, index) => {
               return (
-                <Link to={singleOption.link}>
-                  <Text
-                    align="center"
-                    fs="18px"
-                    color={COLORS.forestGreen}
-                    fw="600"
-                  >
+                <Link to={singleOption.link} key={`link-${index}`}>
+                  <Text align="center" fs="18px" color={COLORS.gray} fw="600">
                     {singleOption.title}
                   </Text>
                 </Link>
               );
             })}
-          </FlexWrapper>
+          </StyledWrapper>
           <DefaultButton>REZERVUOKITE</DefaultButton>
         </NavWrapper>
       ) : (
         <>
-          <FlexWrapper justifyContent="space-between" padding="25px 50px">
-            <Logo src="./images/react-logo.png" />
-            <FlexWrapper
-              gap="6px"
-              flexDirection="column"
-              justifyContent="center"
-            >
-              <Bar />
-              <Bar />
-              <Bar />
+          {!showModal && (
+            <FlexWrapper justifyContent="space-between" padding="25px 15px">
+              <Logo src="./images/react-logo.png" />
+              <FlexWrapper
+                gap="6px"
+                flexDirection="column"
+                justifyContent="center"
+                onClick={openNavModal}
+              >
+                <Bar />
+                <Bar />
+                <Bar />
+              </FlexWrapper>
             </FlexWrapper>
-          </FlexWrapper>
+          )}
+          {showModal && <NavModal visibility={showModal} />}
         </>
       )}
     </>
@@ -63,7 +75,14 @@ const NavWrapper = styled(FlexWrapper)`
   justify-content: center;
   gap: 80px;
   padding: 15px 0;
-  background: rgba(204, 204, 204, 0.5);
+  background: rgba(204, 204, 204, 0.8);
+`;
+
+const StyledWrapper = styled(FlexWrapper)`
+  a:first-child div {
+    font-weight: 700;
+    color: ${COLORS.forestGreen};
+  }
 `;
 
 const Bar = styled.div`
