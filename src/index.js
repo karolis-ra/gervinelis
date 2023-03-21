@@ -8,7 +8,8 @@ import { Home } from "./pages/home/home";
 import { AboutUs } from "./pages/about/aboutus";
 import { Cayaks } from "./pages/cayaks/cayaks";
 import { Houses } from "./pages/houses/houses";
-
+import { Saunas } from "./pages/saunas/saunas";
+import { Contacts } from "./pages/contacts/contacts";
 import "./index.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -25,6 +26,8 @@ root.render(
           <Route path="/apiemus" element={<AboutUs />} />
           <Route path="/baidares" element={<Cayaks />} />
           <Route path="/apgyvendinimas" element={<Houses />} />
+          <Route path="/pirtysirkubilai" element={<Saunas />} />
+          <Route path="/kontaktai" element={<Contacts />} />
         </Routes>
       </BrowserRouter>
     </Provider>

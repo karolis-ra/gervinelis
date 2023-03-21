@@ -75,7 +75,7 @@ const NavWrapper = styled(FlexWrapper)`
   justify-content: center;
   gap: 80px;
   padding: 15px 0;
-  background: rgba(204, 204, 204, 0.8);
+  background: rgba(253, 248, 245, 0.8);
 `;
 
 const StyledWrapper = styled(FlexWrapper)`
