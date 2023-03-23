@@ -37,9 +37,14 @@ export const Navigation = () => {
             {navOptions.map((singleOption, index) => {
               return (
                 <Link to={singleOption.link} key={`link-${index}`}>
-                  <Text align="center" fs="18px" color={COLORS.gray} fw="600">
+                  <StyledText
+                    align="center"
+                    fs="18px"
+                    color={COLORS.gray}
+                    fw="600"
+                  >
                     {singleOption.title}
-                  </Text>
+                  </StyledText>
                 </Link>
               );
             })}
@@ -82,6 +87,10 @@ const StyledWrapper = styled(FlexWrapper)`
   a:first-child div {
     font-weight: 700;
     color: ${COLORS.forestGreen};
+    &:hover {
+      text-decoration: underline;
+      color: ${COLORS.creme};
+    }
   }
 `;
 
@@ -93,4 +102,12 @@ const Bar = styled.div`
 
 const Logo = styled.img`
   margin-right: 20px;
+`;
+
+const StyledText = styled(Text)`
+  transition: 0.3s ease-out;
+  &:hover {
+    text-decoration: underline;
+    color: ${COLORS.forestGreen};
+  }
 `;

@@ -8,6 +8,7 @@ import { Text } from "./Text";
 import { Image } from "./Image";
 import { useDispatch } from "react-redux";
 import { hideModal } from "../state/navigation/reducer";
+import { DefaultButton } from "./DefaultButton";
 
 export const NavModal = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ export const NavModal = () => {
             </Link>
           );
         })}
+        <DefaultButton>REZERVUOKITE</DefaultButton>
       </FlexWrapper>
     </StyledWrapper>
   );

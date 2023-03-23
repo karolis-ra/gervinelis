@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import styled from "styled-components";
 import { Image } from "../../../components/Image";
 import { xlgTabletMF } from "../../../styles/breakpoints";
+import { COLORS } from "../../../styles/colors";
 
 function SampleNextArrow(props) {
   const { className, onClick } = props;
@@ -10,7 +11,7 @@ function SampleNextArrow(props) {
     <StyledNextImage
       width="14px"
       height="28px"
-      src="./images/slider-arr-right.png"
+      src="./images/arrow-right-creme.png"
       className={className}
       onClick={onClick}
       alt="react-next"
@@ -24,7 +25,7 @@ function SamplePrevArrow(props) {
     <StyledPrevImage
       width="14px"
       height="28px"
-      src="./images/slider-arr-left.png"
+      src="./images/arrow-left-creme.png"
       className={className}
       onClick={onClick}
       alt="react-prev"
@@ -32,7 +33,6 @@ function SamplePrevArrow(props) {
   );
 }
 export const SmallSlider = ({ images }) => {
-  console.log(images);
   const settings = {
     dots: true,
 
@@ -71,20 +71,20 @@ const StyledSlider = styled(Slider)`
     left: 35%;
     width: 30%;
   }
+
+  .slick-dots li button:before {
+    color: ${COLORS.creme};
+    font-size: 10px;
+  }
 `;
 
 const StyledNextImage = styled(Image)`
-  border: 1px solid red;
-  background-color: white;
   position: absolute;
   top: 90%;
   right: 25%;
 `;
 
 const StyledPrevImage = styled(Image)`
-  border: 1px solid red;
-  background-color: white;
-  background-color: white;
   position: absolute;
   top: 90%;
   left: 25%;

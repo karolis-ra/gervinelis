@@ -11,4 +11,7 @@ export const Text = styled.div`
   text-align: ${(props) => props.align || "center"};
   padding: ${(props) => props.padding};
   background-color: ${(props) => props.backgroundColor};
+  &:hover {
+    text-decoration: ${(props) => props.textDecor};
+  }
 `;

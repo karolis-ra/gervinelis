@@ -23,7 +23,11 @@ export const Hero = ({ bgImage, text, btnText, heroHeight, contPadding }) => {
           {text}
         </Text>
         {btnText && (
-          <DefaultButton fs={isTablet ? "24px" : "16px"} margin="32px 0 0 0">
+          <DefaultButton
+            fs={isTablet ? "24px" : "16px"}
+            margin="32px 0 0 0"
+            reverse={1}
+          >
             {btnText}
           </DefaultButton>
         )}

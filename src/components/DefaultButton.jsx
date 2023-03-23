@@ -9,8 +9,15 @@ export const DefaultButton = styled(Link)`
   color: ${(props) => (props.reverse ? COLORS.forestGreen : COLORS.creme)};
   font-weight: 700;
   background-color: ${(props) =>
-    props.reverse ? COLORS.creme : COLORS.forestGreen};
+    props.reverse === 1 ? COLORS.creme : COLORS.forestGreen};
   align-self: center;
   font-size: ${(props) => props.fs};
   margin: ${(props) => props.margin};
+  transition: 0.3s; ease-out;
+  &:hover {
+    background-color: ${(props) =>
+      props.reverse === 1 ? COLORS.forestGreen : COLORS.creme};
+      color: ${(props) =>
+        props.reverse === 1 ? COLORS.creme : COLORS.forestGreen};
+  }
 `;

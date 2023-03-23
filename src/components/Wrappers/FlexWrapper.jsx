@@ -19,6 +19,7 @@ export const FlexWrapper = styled.div`
   border-radius: ${(props) => props.borderRadius};
   border-bottom-left-radius: ${(props) => props.borderBottomLeftRadius};
   border-bottom-right-radius: ${(props) => props.borderBottomRightRadius};
+  border-bottom: ${(props) => props.borderBottom};
   border-top: ${(props) => props.borderTop};
   height: ${(props) => props.height};
   flex-wrap: ${(props) => props.flexWrap};

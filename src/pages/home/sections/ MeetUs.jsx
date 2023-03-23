@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "../../../components/Text";
 import { FlexWrapper } from "../../../components/Wrappers/FlexWrapper";
 import { COLORS } from "../../../styles/colors";
 import { Image } from "../../../components/Image";
@@ -11,16 +10,6 @@ export const MeetUs = () => {
   const { isTablet } = useQuery();
   return (
     <FlexWrapper backgroundColor={COLORS.forestGreen} flexDirection="column">
-      {/* <Text
-        fs={isTablet ? "32px" : "18px"}
-        fw="600"
-        color={isTablet ? COLORS.gray : COLORS.creme}
-        align="left"
-        padding={isTablet ? "50px 10%" : " 36px 0 0 24px"}
-        backgroundColor={isTablet && COLORS.white}
-      >
-        Praleiskite laisvalaikį su mumis
-      </Text> */}
       <FlexWrapper
         margin="0 auto"
         padding={isTablet ? "40px 10%" : "24px 24px"}
@@ -42,8 +31,8 @@ export const MeetUs = () => {
           </BodyTitle>
           <BodyText
             color={COLORS.white}
-            align={!isTablet ? "left" : "center"}
             padding={isTablet && "0 80px 0 0"}
+            align="left"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illum
             placeat delectus veniam temporibus molestiae magni dolorum

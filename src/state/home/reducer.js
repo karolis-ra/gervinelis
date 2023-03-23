@@ -10,14 +10,12 @@ export const homeSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
-      console.log("this is my state", state);
       if (state.slideNum === reviews.length) {
         state.slideNum = 0;
       }
       state.slideNum++;
     },
     decrement: (state) => {
-      console.log(state.slideNum);
       if (state.slideNum === 0) {
         state.slideNum = reviews.length - 1;
       }

@@ -75,7 +75,7 @@ export const Home = () => {
           fw="600"
           color={COLORS.gray}
           backgroundColor={COLORS.white}
-          padding="0 0 0 135px "
+          padding={isTablet ? "0 0 0 10%" : "0 0 0 24px"}
           align="left"
         >
           Klientai mus vertina

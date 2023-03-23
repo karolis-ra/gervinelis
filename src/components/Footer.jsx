@@ -46,7 +46,9 @@ export const Footer = () => {
         {navOptions.map((singleOption, index) => {
           return (
             <Link key={`footerOption-${index}`} to={singleOption.link}>
-              <Text align="center">{singleOption.title}</Text>
+              <Text align="center" textDecor="underline">
+                {singleOption.title}
+              </Text>
             </Link>
           );
         })}

@@ -12,7 +12,6 @@ export const navigationSlice = createSlice({
       state.showModal = true;
     },
     hideModal: (state) => {
-      console.log("hide modal triggered", state.showModal);
       state.showModal = false;
     },
     toggleModal: (state) => {
