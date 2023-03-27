@@ -19,8 +19,11 @@ export const Cayaks = () => {
       contPadding="85px 0 135px 0"
     >
       <ShortAbout
-        imageSrcLeft="./images/leaf-left.svg"
-        imageSrcRight="./images/leaf-right.png"
+        imageSrcLeft="./images/leaf-left-big.svg"
+        imageSrcRight="./images/leaf-left-big.svg"
+        width="150px"
+        padding="10px 40px"
+        transform="rotate(180deg)"
       />
       <FlexWrapper
         padding={isTablet ? "50px 10% 20px 10%" : "16px 24px"}

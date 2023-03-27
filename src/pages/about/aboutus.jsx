@@ -29,7 +29,8 @@ export const AboutUs = () => {
         padding={isTablet ? "50px 10% 20px 10%" : "16px 24px"}
         gap="30px"
       >
-        <Image src="./images/baidares.png" flex="1" />
+        <Image src="./images/baidares.png" flex="1" width="50%" />
+
         <BodyText align="left" color={COLORS.gray} fw="400" flex="1">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
           deleniti maiores quasi quo quae voluptatum reiciendis labore eius

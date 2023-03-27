@@ -20,8 +20,9 @@ export const Houses = () => {
       contPadding="85px 0 135px 0"
     >
       <ShortAbout
-        imageSrcLeft="./images/leaf-left.svg"
-        imageSrcRight="./images/leaf-right.png"
+        imageSrcLeft="./images/doodle-left.svg"
+        imageSrcRight="./images/doodle-right.svg"
+        width="550px"
       />
       <FlexWrapper
         padding={isXlgTablet ? "50px 10% 20px 10%" : "16px 24px"}

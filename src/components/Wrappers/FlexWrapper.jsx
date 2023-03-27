@@ -7,6 +7,7 @@ export const FlexWrapper = styled.div`
   max-width: ${(props) => props.maxWidth};
   min-width: ${(props) => props.minWidth};
   margin: ${(props) => props.margin};
+  margin-bottom: ${(props) => props.marginBottom};
   gap: ${(props) => props.gap || "0"};
   flex-direction: ${(props) => props.flexDirection || "row"};
   gap: ${(props) => props.gap};

@@ -19,7 +19,7 @@ export const Contacts = () => {
         flexDirection="column"
         gap="46px"
         alignItems="center"
-        margin="50px 0 0 0"
+        margin="50px 0 -50px 0"
       >
         <TitleText
           color={COLORS.gray}

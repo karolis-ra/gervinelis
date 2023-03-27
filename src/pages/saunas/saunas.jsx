@@ -20,8 +20,12 @@ export const Saunas = () => {
       contPadding="85px 0 135px 0"
     >
       <ShortAbout
-        imageSrcLeft="./images/leaf-left.svg"
-        imageSrcRight="./images/leaf-right.png"
+        imageSrcLeft="./images/bubbles-left.svg"
+        imageSrcRight="./images/bubbles-right.svg"
+        width="350px"
+        marginTop="-330px"
+        marginBottom="-150px"
+        padding="24px 0"
       />
       <FlexWrapper
         padding={isXlgTablet ? "50px 10% 20px 10%" : "16px 24px"}

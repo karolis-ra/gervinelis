@@ -24,7 +24,7 @@ export const ServiceBlock = ({
       gap="24px"
     >
       <FlexWrapper alignItems="center" flex="1">
-        <Image src={img} />
+        <Image src={img} objectFit="cover" maxHeight="350px" height="300px" />
       </FlexWrapper>
 
       <FlexWrapper flexDirection="column" gap="24px" flex="1">

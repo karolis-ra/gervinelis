@@ -16,6 +16,7 @@ export const Footer = () => {
       alignItems="center"
       padding="50px 0"
       gap="25px"
+      margin="50px 0 0 0"
     >
       <FlexWrapper justifyContent="center" gap="15px">
         <Link to="https://www.facebook.com/" target="new">
