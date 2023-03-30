@@ -18,7 +18,7 @@ export const MeetUs = () => {
         gap={isTablet ? "24px" : "8px"}
       >
         <FlexWrapper flexDirection="column" gap="24px" flex="1">
-          <Image src="./images/Foto.png" />
+          <Image src="./images/Foto.png" maxHeight="300px" objectFit="cover" />
         </FlexWrapper>
         <FlexWrapper
           flexDirection="column"
@@ -26,7 +26,7 @@ export const MeetUs = () => {
           flex="1"
           justifyContent="center"
         >
-          <BodyTitle color={COLORS.creme} align="left">
+          <BodyTitle color={COLORS.creme} align="left" mobFs="24px">
             SUSIPAŽINKIME
           </BodyTitle>
           <BodyText

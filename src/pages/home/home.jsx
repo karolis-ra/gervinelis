@@ -43,7 +43,7 @@ export const Home = () => {
         heroImg="./images/heroBg.png"
         heroText="POILSIS IR PRAMOGOS GAMTOJE"
         heroBtnText="REZERVUOKITE VIETĄ"
-        contPadding="85px 0 135px 0"
+        contPadding="135px 0 135px 0"
       >
         <MeetUs />
         <Text

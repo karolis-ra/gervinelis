@@ -7,6 +7,8 @@ export const FlexWrapper = styled.div`
   max-width: ${(props) => props.maxWidth};
   min-width: ${(props) => props.minWidth};
   margin: ${(props) => props.margin};
+  margin-top: ${(props) => props.marginTop};
+  margin-bottom: ${(props) => props.marginBottom};
   margin-bottom: ${(props) => props.marginBottom};
   gap: ${(props) => props.gap || "0"};
   flex-direction: ${(props) => props.flexDirection || "row"};
@@ -24,4 +26,7 @@ export const FlexWrapper = styled.div`
   border-top: ${(props) => props.borderTop};
   height: ${(props) => props.height};
   flex-wrap: ${(props) => props.flexWrap};
+  background-image: url(${(props) => props.bgImage});
+  background-size: cover;
+  background-position: center;
 `;

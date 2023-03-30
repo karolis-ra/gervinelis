@@ -15,6 +15,9 @@ export const ShortAbout = ({
   marginBottom,
   padding,
   transform,
+  alignItems,
+  alignLeftDoodle,
+  alignRightDoodle,
 }) => {
   const { isTablet } = useQuery();
   return (
@@ -22,14 +25,12 @@ export const ShortAbout = ({
       backgroundColor={COLORS.forestGreen}
       gap="80px"
       padding={padding}
+      height="320px"
     >
       {isTablet && (
-        <Image
-          src={imageSrcLeft}
-          width={width}
-          padding={imgPaddingTop}
-          marginTop={marginTop}
-        />
+        <FlexWrapper alignItems={alignLeftDoodle} marginTop={marginTop}>
+          <Image src={imageSrcLeft} width={width} padding={imgPaddingTop} />
+        </FlexWrapper>
       )}
 
       <FlexWrapper
@@ -48,13 +49,14 @@ export const ShortAbout = ({
         <Image src="./images/react-logo.png" width="45px" />
       </FlexWrapper>
       {isTablet && (
-        <Image
-          src={imageSrcRight}
-          width={width}
-          padding={imgPaddingBot}
-          marginBottom={marginBottom}
-          transform={transform}
-        />
+        <FlexWrapper alignItems={alignRightDoodle} marginBottom={marginBottom}>
+          <Image
+            src={imageSrcRight}
+            width={width}
+            padding={imgPaddingBot}
+            transform={transform}
+          />
+        </FlexWrapper>
       )}
     </FlexWrapper>
   );

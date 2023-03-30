@@ -6,7 +6,14 @@ import { Text } from "./Text";
 import { DefaultButton } from "./DefaultButton";
 import { useQuery } from "../styles/breakpoints";
 
-export const Hero = ({ bgImage, text, btnText, heroHeight, contPadding }) => {
+export const Hero = ({
+  bgImage,
+  text,
+  btnText,
+  heroHeight,
+  contPadding,
+  reservation,
+}) => {
   const { isTablet } = useQuery();
   return (
     <HeroWrapper bgImage={bgImage} height={heroHeight}>
@@ -15,7 +22,7 @@ export const Hero = ({ bgImage, text, btnText, heroHeight, contPadding }) => {
         <Text
           width="80%"
           margin="0 auto"
-          color={COLORS.white}
+          color={reservation ? COLORS.gray : COLORS.white}
           align="center"
           fs={isTablet ? "56px" : "24px"}
           fw="700"
@@ -27,6 +34,7 @@ export const Hero = ({ bgImage, text, btnText, heroHeight, contPadding }) => {
             fs={isTablet ? "24px" : "16px"}
             margin="32px 0 0 0"
             reverse={1}
+            to="/rezervacija"
           >
             {btnText}
           </DefaultButton>

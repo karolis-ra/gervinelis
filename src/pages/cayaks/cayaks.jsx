@@ -9,6 +9,7 @@ import { routes } from "../../assets/route";
 import { RouteCard } from "../../components/RouteCard";
 import { ServiceBlock } from "../home/sections/ServiceBlock";
 import { services } from "../home/home";
+import { FloatingButton } from "../../components/FloatingButton";
 export const Cayaks = () => {
   const { isTablet } = useQuery();
   return (
@@ -24,6 +25,8 @@ export const Cayaks = () => {
         width="150px"
         padding="10px 40px"
         transform="rotate(180deg)"
+        alignLeftDoodle="flex-end"
+        alignRightDoodle="flex-start"
       />
       <FlexWrapper
         padding={isTablet ? "50px 10% 20px 10%" : "16px 24px"}
@@ -66,6 +69,7 @@ export const Cayaks = () => {
           })}
         </FlexWrapper>
       </FlexWrapper>
+      <FloatingButton />
     </PageLayout>
   );
 };

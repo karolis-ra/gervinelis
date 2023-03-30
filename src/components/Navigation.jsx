@@ -49,7 +49,7 @@ export const Navigation = () => {
               );
             })}
           </StyledWrapper>
-          <DefaultButton>REZERVUOKITE</DefaultButton>
+          <DefaultButton to="/rezervacija">REZERVUOKITE</DefaultButton>
         </NavWrapper>
       ) : (
         <>

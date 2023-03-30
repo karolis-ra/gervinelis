@@ -10,6 +10,7 @@ import { Cayaks } from "./pages/cayaks/cayaks";
 import { Houses } from "./pages/houses/houses";
 import { Saunas } from "./pages/saunas/saunas";
 import { Contacts } from "./pages/contacts/contacts";
+import { Reservation } from "./pages/reservation/reservation";
 import "./index.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -28,6 +29,7 @@ root.render(
           <Route path="/apgyvendinimas" element={<Houses />} />
           <Route path="/pirtysirkubilai" element={<Saunas />} />
           <Route path="/kontaktai" element={<Contacts />} />
+          <Route path="/rezervacija" element={<Reservation />} />
         </Routes>
       </BrowserRouter>
     </Provider>

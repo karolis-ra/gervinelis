@@ -22,7 +22,7 @@ export const Houses = () => {
       <ShortAbout
         imageSrcLeft="./images/doodle-left.svg"
         imageSrcRight="./images/doodle-right.svg"
-        width="550px"
+        width="285px"
       />
       <FlexWrapper
         padding={isXlgTablet ? "50px 10% 20px 10%" : "16px 24px"}

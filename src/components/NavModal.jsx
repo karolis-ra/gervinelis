@@ -52,7 +52,7 @@ export const NavModal = () => {
             </Link>
           );
         })}
-        <DefaultButton>REZERVUOKITE</DefaultButton>
+        <DefaultButton to="/rezervacija">REZERVUOKITE</DefaultButton>
       </FlexWrapper>
     </StyledWrapper>
   );

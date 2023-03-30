@@ -22,10 +22,11 @@ export const Saunas = () => {
       <ShortAbout
         imageSrcLeft="./images/bubbles-left.svg"
         imageSrcRight="./images/bubbles-right.svg"
-        width="350px"
-        marginTop="-330px"
+        width="300px"
+        marginTop="-230px"
         marginBottom="-150px"
-        padding="24px 0"
+        alignLeftDoodle="flex-start"
+        alignRightDoodle="flex-end"
       />
       <FlexWrapper
         padding={isXlgTablet ? "50px 10% 20px 10%" : "16px 24px"}

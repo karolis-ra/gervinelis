@@ -10,6 +10,7 @@ export const PageLayout = ({
   heroImg,
   heroHeight,
   contPadding,
+  reservation,
 }) => {
   return (
     <FlexWrapper flexDirection="column" margin="0 auto">
@@ -19,6 +20,7 @@ export const PageLayout = ({
         btnText={heroBtnText}
         heroHeight={heroHeight}
         contPadding={contPadding}
+        reservation={reservation}
       />
       {children}
       <Footer />
