@@ -8,16 +8,18 @@ import { COLORS } from "../../styles/colors";
 import { DateForm } from "../../components/DateForm";
 import styled from "styled-components";
 import { reservationSelector } from "../../state/reservation/selector";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { sectionControl } from "../../state/reservation/reducer";
 
 export const Reservation = () => {
   const { isTablet } = useQuery();
   const { activeServiceBlocks } = useSelector(reservationSelector);
+  const dispatch = useDispatch();
 
   const showHideServices = (e) => {
-    console.log(e.target);
-    console.log("hide");
+    dispatch(sectionControl(e.target.id));
   };
+
   return (
     <PageLayout
       heroText="REZERVACIJA"
