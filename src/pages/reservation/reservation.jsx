@@ -64,7 +64,7 @@ export const Reservation = () => {
               flexDirection="column"
               id="serviceBlock"
               border="2px solid red"
-              closed={activeServiceBlocks.includes(service)}
+              closed={!activeServiceBlocks.includes(service)}
             >
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit

@@ -11,6 +11,7 @@ import { Houses } from "./pages/houses/houses";
 import { Saunas } from "./pages/saunas/saunas";
 import { Contacts } from "./pages/contacts/contacts";
 import { Reservation } from "./pages/reservation/reservation";
+import { Thankyou } from "./pages/thankyou/thankyou";
 import "./index.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -30,6 +31,7 @@ root.render(
           <Route path="/pirtysirkubilai" element={<Saunas />} />
           <Route path="/kontaktai" element={<Contacts />} />
           <Route path="/rezervacija" element={<Reservation />} />
+          <Route path="/thankyou" element={<Thankyou />} />
         </Routes>
       </BrowserRouter>
     </Provider>
