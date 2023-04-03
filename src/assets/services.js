@@ -1,14 +1,14 @@
 export const services = [
   {
-    service: "APGYVENDINIMAS",
+    service: "housing",
     img: "./images/apgyvendinimas.png",
   },
   {
-    service: "BAIDARĖS",
+    service: "cayak",
     img: "./images/baidares_v2.png",
   },
   {
-    service: "PIRTYS IR KUBILAI",
+    service: "sauna",
     img: "./images/pirtys.png",
   },
 ];

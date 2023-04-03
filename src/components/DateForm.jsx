@@ -3,12 +3,17 @@ import styled from "styled-components";
 import { FlexWrapper } from "./Wrappers/FlexWrapper";
 import { COLORS } from "../styles/colors";
 import { TitleText } from "./TitleText";
+import { useDispatch } from "react-redux";
+import { addDate } from "../state/reservation/reducer";
 
 export const DateForm = () => {
+  const dispatch = useDispatch();
   const handleDateSubmit = (e) => {
     e.preventDefault();
-    const arrival_date = e.target.elements.arrival.value;
-    const departure_date = e.target.elements.departure.value;
+    const dates = [];
+    dates.push(e.target.elements.arrival.value);
+    dates.push(e.target.elements.departure.value);
+    dispatch(addDate(dates));
   };
 
   return (

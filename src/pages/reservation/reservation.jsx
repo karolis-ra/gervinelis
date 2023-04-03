@@ -9,15 +9,41 @@ import { DateForm } from "../../components/DateForm";
 import styled from "styled-components";
 import { reservationSelector } from "../../state/reservation/selector";
 import { useSelector, useDispatch } from "react-redux";
-import { sectionControl } from "../../state/reservation/reducer";
+import { sectionControl, addProducts } from "../../state/reservation/reducer";
+import { useEffect } from "react";
+import { fetchData } from "../../state/reservation/reducer";
+import { ReservationItem } from "../../components/ReservationItem";
+import { DefaultButton } from "../../components/DefaultButton";
 
 export const Reservation = () => {
   const { isTablet } = useQuery();
-  const { activeServiceBlocks } = useSelector(reservationSelector);
+  const { activeServiceBlocks, products } = useSelector(reservationSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!products?.length) {
+      dispatch(fetchData());
+    }
+  }, []);
 
   const showHideServices = (e) => {
     dispatch(sectionControl(e.target.id));
+  };
+
+  const addOrder = (id, qty) => {
+    const order = {};
+    order.id = Number(id);
+    order.qty = qty;
+    dispatch(addProducts(order));
+  };
+
+  const handleProductSelect = (e) => {
+    addOrder(e.target.id, 1);
+  };
+
+  const handleCayakOrder = (e) => {
+    e.preventDefault();
+    addOrder(e.target.id, e.target.elements.qty.value);
   };
 
   return (
@@ -49,6 +75,9 @@ export const Reservation = () => {
       </FlexWrapper>
       <DateForm></DateForm>
       {services.map(({ service }, index) => {
+        const filteredProducts = products.filter((singleProduct) => {
+          return singleProduct.key === service;
+        });
         return (
           <FlexWrapper flexDirection="column" key={index}>
             <FlexWrapper
@@ -66,16 +95,34 @@ export const Reservation = () => {
               border="2px solid red"
               closed={!activeServiceBlocks.includes(service)}
             >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-                cupiditate quo quod, magni laborum unde eaque architecto facere
-                repellat illum. Nihil laboriosam minima facere quasi optio quia
-                similique corporis sint!
-              </p>
+              {filteredProducts.map(
+                (
+                  { key, id, name, currency, unit_price, description },
+                  index
+                ) => {
+                  const desc = JSON.parse(description);
+
+                  return (
+                    <ReservationItem
+                      key={`card-${index}`}
+                      id={id}
+                      images={["./images/apgyvendinimas.png"]}
+                      title={name}
+                      description={desc.description}
+                      price={unit_price}
+                      perks={[]}
+                      handleOrder={handleProductSelect}
+                      handleCayakOrder={handleCayakOrder}
+                      service={service}
+                    />
+                  );
+                }
+              )}
             </StyledBlock>
           </FlexWrapper>
         );
       })}
+      <DefaultButton to="/info">TOLIAU</DefaultButton>
     </PageLayout>
   );
 };
