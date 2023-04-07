@@ -1,57 +1,82 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { PageLayout } from "../../components/Layouts/PageLayout";
 import { FlexWrapper } from "../../components/Wrappers/FlexWrapper";
-import { useDispatch } from "react-redux";
-import { addPersonalData, orderData } from "../../state/reservation/reducer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { reservationSelector } from "../../state/reservation/selector";
+import { BodyTitle } from "../../components/BodyTitle";
+import { BodyText } from "../../components/BodyText";
+import { useQuery } from "../../styles/breakpoints";
+import { COLORS } from "../../styles/colors";
+import { orderData, getProduct } from "../../state/reservation/reducer";
 
 export const Info = () => {
   const dispatch = useDispatch();
-  const { order } = useSelector(reservationSelector);
+  const { orderProducts, book_from, book_to, singleProducts } =
+    useSelector(reservationSelector);
+  const { isTablet } = useQuery();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const personalInfo = {};
+    const finalOrder = {};
+    finalOrder.first_name = e.target.name.value;
+    finalOrder.last_name = e.target.lastname.value;
+    finalOrder.phone = e.target.phone.value;
+    finalOrder.email = e.target.email.value;
+    finalOrder.payment_method = e.target.payment.value;
+    finalOrder.products = orderProducts;
+    finalOrder.book_from = book_from;
+    finalOrder.book_to = book_to;
+    finalOrder.customer_note = e.target.comment.value;
 
-    personalInfo.first_name = e.target.name.value;
-    personalInfo.last_name = e.target.lastname.value;
-    personalInfo.phone = e.target.phone.value;
-    personalInfo.email = e.target.email.value;
-    personalInfo.payment_method = e.target.payment.value;
-    personalInfo.customer_note = e.target.comment.value;
-
-    dispatch(addPersonalData(personalInfo));
-
-    console.log("this is order sending", JSON.stringify(order));
-    dispatch(orderData(order));
-    // await fetch("http://127.0.0.1:8000/api/order/create", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(order),
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    // dispatch(orderData(finalOrder));
   };
+
+  useEffect(() => {
+    const fetchOrderedProducts = () => {
+      orderProducts.forEach((element) => {
+        dispatch(getProduct(element.id));
+      });
+    };
+    if (singleProducts.length === 0) {
+      fetchOrderedProducts();
+    }
+  }, [orderProducts, dispatch]);
 
   return (
     <PageLayout>
-      <FlexWrapper>
+      <FlexWrapper
+        flexDirection={isTablet ? "row-reverse" : "column"}
+        padding={isTablet ? "0 100px" : " 0 24px"}
+        gap="24px"
+      >
+        <FlexWrapper flexDirection="column" flex={1}>
+          {singleProducts?.map((item) => {
+            let finalPrice = 0;
+            orderProducts.map((order) => {
+              if (order.id === item.id) {
+                finalPrice = order.qty * item.unit_price;
+                return finalPrice;
+              }
+            });
+            return (
+              <FlexWrapper>
+                <BodyTitle>{item.name}</BodyTitle>
+                <BodyText>{finalPrice}</BodyText>
+              </FlexWrapper>
+            );
+          })}
+        </FlexWrapper>
         <PersonalInfo onSubmit={handleFormSubmit}>
-          <input id="name" placeholder="Vardas" />
-          <input id="lastname" placeholder="Pavarde" />
-          <input id="phone" placeholder="Telefono numeris" />
-          <input id="email" placeholder="El. paštas" />
-          <input id="payment" placeholder="Mokejimo budas" />
-          <input id="comment" placeholder="papildomas komentaras" />
-          <ReserveBtn type="submit">Rezervuoti</ReserveBtn>
+          <FlexWrapper flexDirection="column" gap="10px">
+            <StyledInput id="name" placeholder="Vardas" />
+            <StyledInput id="lastname" placeholder="Pavarde" />
+            <StyledInput id="phone" placeholder="Telefono numeris" />
+            <StyledInput id="email" placeholder="El. paštas" />
+            <StyledInput id="payment" placeholder="Mokejimo budas" />
+            <StyledTextarea id="comment" placeholder="papildomas komentaras" />
+            <ReserveBtn type="submit">Rezervuoti</ReserveBtn>
+          </FlexWrapper>
         </PersonalInfo>
       </FlexWrapper>
     </PageLayout>
@@ -59,9 +84,38 @@ export const Info = () => {
 };
 
 const PersonalInfo = styled.form`
-  border: 1px solid red;
+  flex: 1;
 `;
 
 const ReserveBtn = styled.button`
-  background-color: green;
+align-self: flex-start;
+margin-top: 14px;
+padding: 10px 24px;
+border: none;
+border-radius: 8px;
+text-decoration: none;
+color: ${COLORS.creme};
+font-weight: 700;
+background-color: ${COLORS.forestGreen};
+font-size: 16px;
+transition: 0.3s; ease-out;
+&:hover {
+  background-color: ${COLORS.darkForest};
+    color: ${COLORS.darkCreme};
+}
+`;
+
+const StyledInput = styled.input`
+  border: 1px solid ${COLORS.creme};
+  background-color: ${COLORS.white};
+  padding: 16px 24px;
+  border-radius: 8px;
+`;
+
+const StyledTextarea = styled.textarea`
+  border: 1px solid ${COLORS.creme};
+  background-color: ${COLORS.white};
+  padding: 16px 24px;
+  border-radius: 8px;
+  min-height: 100px;
 `;

@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { fetchData } from "../../state/reservation/reducer";
 import { ReservationItem } from "../../components/ReservationItem";
 import { DefaultButton } from "../../components/DefaultButton";
+import { BodyText } from "../../components/BodyText";
 
 export const Reservation = () => {
   const { isTablet } = useQuery();
@@ -52,24 +53,29 @@ export const Reservation = () => {
       contPadding="50px 0 80px 0"
       reservation={true}
     >
-      <TitleText color={COLORS.gray}>
-        PASIRINKITE PASLAUGĄ KURIĄ NORITE REZERVUOTI
+      <TitleText color={COLORS.gray} mobFs="16px" fs="18px">
+        PASIRINKITE PASLAUGĄ
       </TitleText>
       <FlexWrapper
         width="90%"
         gap={isTablet ? "55px" : "20px"}
         justifyContent="center"
-        margin="0 auto"
+        margin="20px auto 0 auto"
       >
-        {services.map(({ service, img }, index) => {
+        {services.map(({ service, img, title }, index) => {
           return (
-            <FlexWrapper
-              key={`icon-${index}`}
-              bgImage={img}
-              width={isTablet ? "290px" : "100px"}
-              height={isTablet ? "290px" : "100px"}
-              borderRadius="8px"
-            ></FlexWrapper>
+            <FlexWrapper flexDirection="column" gap="8px" alignItems="center">
+              <StyledWrapper
+                key={`icon-${index}`}
+                bgImage={img}
+                width={isTablet ? "290px" : "100px"}
+                height={isTablet ? "290px" : "100px"}
+                borderRadius="8px"
+              />
+              <BodyText mobFs="12px" fs="18px" color={COLORS.gray} fw="700">
+                {title}
+              </BodyText>
+            </FlexWrapper>
           );
         })}
       </FlexWrapper>
@@ -131,4 +137,13 @@ const StyledBlock = styled.div`
   overflow-x: hidden;
   max-height: ${(props) => (props.closed === true ? "0px" : "500px")};
   transition: all 0.5s ease-in-out;
+`;
+
+const StyledWrapper = styled(FlexWrapper)`
+  box-sizing: border-box;
+
+  &:hover {
+    border: 5px solid ${COLORS.creme};
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
 `;

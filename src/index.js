@@ -21,21 +21,19 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/apiemus" element={<AboutUs />} />
-          <Route path="/baidares" element={<Cayaks />} />
-          <Route path="/apgyvendinimas" element={<Houses />} />
-          <Route path="/pirtysirkubilai" element={<Saunas />} />
-          <Route path="/kontaktai" element={<Contacts />} />
-          <Route path="/rezervacija" element={<Reservation />} />
-          <Route path="/info" element={<Info />} />
-          <Route path="/thankyou" element={<Thankyou />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/apiemus" element={<AboutUs />} />
+        <Route path="/baidares" element={<Cayaks />} />
+        <Route path="/apgyvendinimas" element={<Houses />} />
+        <Route path="/pirtysirkubilai" element={<Saunas />} />
+        <Route path="/kontaktai" element={<Contacts />} />
+        <Route path="/rezervacija" element={<Reservation />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/thankyou" element={<Thankyou />} />
+      </Routes>
+    </BrowserRouter>
+  </Provider>
 );

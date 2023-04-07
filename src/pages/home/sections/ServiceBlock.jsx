@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text } from "../../../components/Text";
 import { FlexWrapper } from "../../../components/Wrappers/FlexWrapper";
 import { COLORS } from "../../../styles/colors";
@@ -6,6 +6,7 @@ import { Image } from "../../../components/Image";
 import { Link } from "react-router-dom";
 import { useQuery } from "../../../styles/breakpoints";
 import { BodyTitle } from "../../../components/BodyTitle";
+import { useLocation } from "react-router-dom";
 
 export const ServiceBlock = ({
   img,
@@ -16,6 +17,13 @@ export const ServiceBlock = ({
   padding,
 }) => {
   const { isTablet } = useQuery();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log(pathname);
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <FlexWrapper
       padding={padding}

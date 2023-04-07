@@ -17,6 +17,26 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
     });
 });
 
+export const getProduct = createAsyncThunk(
+  "data/getProduct",
+  async (productId) => {
+    return await fetch(`http://176.223.135.73/api/products/${productId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response error");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("this is fetch data", data);
+        return data;
+      })
+      .catch((error) => {
+        console.error("There was a problem fetching the data:", error);
+      });
+  }
+);
+
 export const orderData = createAsyncThunk("data/orderData", async (order) => {
   console.log("this is order going to server", JSON.stringify(order));
   const response = await fetch("http://176.223.135.73/api/order/create", {
@@ -37,8 +57,9 @@ export const orderData = createAsyncThunk("data/orderData", async (order) => {
 const initialState = {
   activeServiceBlocks: [],
   products: [],
-  fetching: true,
   orderProducts: [],
+  singleProducts: [],
+  fetching: true,
   book_from: "",
   book_to: "",
   order: {},
@@ -70,26 +91,22 @@ export const reservationSlice = createSlice({
       state.book_from = outputDateStr1;
       state.book_to = outputDateStr2;
     },
-    addPersonalData: (state, { payload }) => {
-      state.order = payload;
-      state.order.products = state.orderProducts;
-      state.order.book_from = state.book_from;
-      state.order.book_to = state.book_to;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, { payload }) => {
-      console.log("data fetched");
       state.products = payload.data;
       state.fetching = false;
     });
     builder.addCase(orderData.fulfilled, (state, { payload }) => {
       console.log("order sent", payload);
     });
+    builder.addCase(getProduct.fulfilled, (state, { payload }) => {
+      state.singleProducts.push(payload.data);
+    });
   },
 });
 
-export const { sectionControl, addProducts, addPersonalData, addDate } =
+export const { sectionControl, addProducts, addDate, clearSingleProducts } =
   reservationSlice.actions;
 
 export default reservationSlice.reducer;
