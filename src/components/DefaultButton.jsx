@@ -11,7 +11,7 @@ export const DefaultButton = styled(Link)`
   font-weight: 700;
   background-color: ${(props) =>
     props.reverse === 1 ? COLORS.creme : COLORS.forestGreen};
-  align-self: center;
+  align-self: ${(props) => props.alignself || "center"};
   font-size: ${(props) => props.fs};
   margin: ${(props) => props.margin};
   transition: 0.3s; ease-out;

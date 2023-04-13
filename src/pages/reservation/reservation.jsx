@@ -9,26 +9,45 @@ import { DateForm } from "../../components/DateForm";
 import styled from "styled-components";
 import { reservationSelector } from "../../state/reservation/selector";
 import { useSelector, useDispatch } from "react-redux";
-import { sectionControl, addProducts } from "../../state/reservation/reducer";
+import {
+  sectionControl,
+  addProducts,
+  cancelProduct,
+} from "../../state/reservation/reducer";
 import { useEffect } from "react";
 import { fetchData } from "../../state/reservation/reducer";
 import { ReservationItem } from "../../components/ReservationItem";
 import { DefaultButton } from "../../components/DefaultButton";
 import { BodyText } from "../../components/BodyText";
+import { Image } from "../../components/Image";
+import { useState } from "react";
 
 export const Reservation = () => {
   const { isTablet } = useQuery();
-  const { activeServiceBlocks, products } = useSelector(reservationSelector);
+  const { activeServiceBlocks, products, orderProducts, book_from, book_to } =
+    useSelector(reservationSelector);
   const dispatch = useDispatch();
 
+  const [serviceList, setServiceList] = useState([]);
+
   useEffect(() => {
+    console.log(book_from, book_to);
+  }, [book_from, book_to]);
+
+  if (book_from && book_to) {
     if (!products?.length) {
       dispatch(fetchData());
     }
-  }, []);
+  }
 
   const showHideServices = (e) => {
     dispatch(sectionControl(e.target.id));
+    if (!serviceList.includes(e.target.id)) {
+      setServiceList([...serviceList, e.target.id]);
+    } else {
+      const newList = serviceList.filter((item) => item !== e.target.id);
+      setServiceList(newList);
+    }
   };
 
   const addOrder = (id, qty) => {
@@ -36,6 +55,13 @@ export const Reservation = () => {
     order.id = Number(id);
     order.qty = qty;
     dispatch(addProducts(order));
+  };
+
+  const cancelOrder = (id) => {
+    const order = {};
+    order.id = Number(id);
+    order.qty = 0;
+    dispatch(cancelProduct(order));
   };
 
   const handleProductSelect = (e) => {
@@ -64,13 +90,21 @@ export const Reservation = () => {
       >
         {services.map(({ service, img, title }, index) => {
           return (
-            <FlexWrapper flexDirection="column" gap="8px" alignItems="center">
+            <FlexWrapper
+              flexDirection="column"
+              gap="8px"
+              alignItems="center"
+              key={`box-${index}`}
+            >
               <StyledWrapper
+                id={service}
                 key={`icon-${index}`}
                 bgImage={img}
                 width={isTablet ? "290px" : "100px"}
                 height={isTablet ? "290px" : "100px"}
                 borderRadius="8px"
+                onClick={showHideServices}
+                className={serviceList.includes(service) && "active"}
               />
               <BodyText mobFs="12px" fs="18px" color={COLORS.gray} fw="700">
                 {title}
@@ -80,20 +114,35 @@ export const Reservation = () => {
         })}
       </FlexWrapper>
       <DateForm></DateForm>
-      {services.map(({ service }, index) => {
+      {services.map(({ service, title }, index) => {
         const filteredProducts = products.filter((singleProduct) => {
           return singleProduct.key === service;
         });
         return (
-          <FlexWrapper flexDirection="column" key={index}>
+          <FlexWrapper
+            flexDirection="column"
+            key={index}
+            padding={isTablet ? "0 108px" : "0 24px"}
+            margin="0 0 40px 0"
+          >
             <FlexWrapper
               justifyContent="space-between"
               backgroundColor={COLORS.forestGreen}
+              padding="16px 24px"
             >
-              {service}
-              <TitleText id={service} onClick={showHideServices}>
-                zemyn
+              <TitleText color={COLORS.white} mobFs="16px" fs="18px">
+                {title}
               </TitleText>
+              <Image
+                id={service}
+                src={
+                  serviceList.includes(service)
+                    ? "./images/arr-up.png"
+                    : "./images/arr-down.png"
+                }
+                width="14px"
+                onClick={showHideServices}
+              />
             </FlexWrapper>
             <StyledBlock
               flexDirection="column"
@@ -119,7 +168,9 @@ export const Reservation = () => {
                       perks={[]}
                       handleOrder={handleProductSelect}
                       handleCayakOrder={handleCayakOrder}
+                      cancelOrder={cancelOrder}
                       service={service}
+                      orderList={orderProducts}
                     />
                   );
                 }
@@ -134,8 +185,9 @@ export const Reservation = () => {
 };
 
 const StyledBlock = styled.div`
+  gap: 20px;
   overflow-x: hidden;
-  max-height: ${(props) => (props.closed === true ? "0px" : "500px")};
+  max-height: ${(props) => (props.closed === true ? "0px" : "6000px")};
   transition: all 0.5s ease-in-out;
 `;
 
@@ -143,6 +195,11 @@ const StyledWrapper = styled(FlexWrapper)`
   box-sizing: border-box;
 
   &:hover {
+    border: none;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  &.active {
     border: 5px solid ${COLORS.creme};
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   }

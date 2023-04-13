@@ -9,7 +9,6 @@ import { routes } from "../../assets/route";
 import { RouteCard } from "../../components/RouteCard";
 import { ServiceBlock } from "../home/sections/ServiceBlock";
 import { services } from "../home/home";
-import { FloatingButton } from "../../components/FloatingButton";
 export const Cayaks = () => {
   const { isTablet } = useQuery();
   return (
@@ -69,7 +68,6 @@ export const Cayaks = () => {
           })}
         </FlexWrapper>
       </FlexWrapper>
-      <FloatingButton />
     </PageLayout>
   );
 };

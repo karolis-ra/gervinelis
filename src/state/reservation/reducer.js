@@ -79,6 +79,10 @@ export const reservationSlice = createSlice({
     addProducts: (state, { payload }) => {
       state.orderProducts.push(payload);
     },
+    cancelProduct: (state, { payload }) => {
+      const index = state.orderProducts.indexOf(payload);
+      state.orderProducts.splice(index, 1);
+    },
     addDate: (state, { payload }) => {
       const inputDate1 = new Date(payload[0]);
       const outputDateStr1 =
@@ -106,7 +110,12 @@ export const reservationSlice = createSlice({
   },
 });
 
-export const { sectionControl, addProducts, addDate, clearSingleProducts } =
-  reservationSlice.actions;
+export const {
+  sectionControl,
+  addProducts,
+  addDate,
+  clearSingleProducts,
+  cancelProduct,
+} = reservationSlice.actions;
 
 export default reservationSlice.reducer;
