@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PageLayout } from "../../components/Layouts/PageLayout";
 import { FlexWrapper } from "../../components/Wrappers/FlexWrapper";
 import { services } from "../../assets/services";
@@ -14,8 +14,8 @@ import {
   addProducts,
   cancelProduct,
 } from "../../state/reservation/reducer";
-import { useEffect } from "react";
 import { fetchData } from "../../state/reservation/reducer";
+import { reservationInfo } from "../../state/reservation/reducer";
 import { ReservationItem } from "../../components/ReservationItem";
 import { DefaultButton } from "../../components/DefaultButton";
 import { BodyText } from "../../components/BodyText";
@@ -24,21 +24,49 @@ import { useState } from "react";
 
 export const Reservation = () => {
   const { isTablet } = useQuery();
-  const { activeServiceBlocks, products, orderProducts, book_from, book_to } =
-    useSelector(reservationSelector);
+  const {
+    activeServiceBlocks,
+    products,
+    reservedDates,
+    orderProducts,
+    book_from,
+    book_to,
+  } = useSelector(reservationSelector);
   const dispatch = useDispatch();
-
   const [serviceList, setServiceList] = useState([]);
+  const [filtereServiceList, setFilteredServiceList] = useState([]);
 
   useEffect(() => {
-    console.log(book_from, book_to);
-  }, [book_from, book_to]);
-
-  if (book_from && book_to) {
-    if (!products?.length) {
-      dispatch(fetchData());
+    if (book_from && book_to) {
+      if (reservedDates?.length === 0) {
+        dispatch(fetchData());
+        dispatch(reservationInfo());
+      }
     }
-  }
+
+    if (reservedDates.length > 0) {
+      let filteredList = [];
+      products.map((singleProduct) => {
+        const productSchedule = reservedDates.filter(
+          ({ product_id }) => product_id === singleProduct.id
+        );
+        console.log("productSchedule", productSchedule[0].booked_dates);
+
+        const isDateReserved = productSchedule[0].booked_dates.some(
+          (reservedDate) => {
+            return reservedDate >= book_from && reservedDate <= book_to;
+          }
+        );
+
+        if (isDateReserved) {
+          return null;
+        }
+        return filteredList.push(singleProduct);
+      });
+      setFilteredServiceList(filteredList);
+      console.log("this is filtered services", filtereServiceList);
+    }
+  }, [book_from, book_to, reservedDates]);
 
   const showHideServices = (e) => {
     dispatch(sectionControl(e.target.id));
@@ -115,7 +143,7 @@ export const Reservation = () => {
       </FlexWrapper>
       <DateForm></DateForm>
       {services.map(({ service, title }, index) => {
-        const filteredProducts = products.filter((singleProduct) => {
+        const filteredProducts = filtereServiceList.filter((singleProduct) => {
           return singleProduct.key === service;
         });
         return (

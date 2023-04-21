@@ -17,6 +17,26 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
     });
 });
 
+export const reservationInfo = createAsyncThunk(
+  "data/reservationInfo",
+  async () => {
+    return await fetch("http://176.223.135.73/api/booking-time/get-all")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response error");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        console.error("There was a problem fetching the data:", error);
+      });
+  }
+);
+
 export const getProduct = createAsyncThunk(
   "data/getProduct",
   async (productId) => {
@@ -57,6 +77,7 @@ export const orderData = createAsyncThunk("data/orderData", async (order) => {
 const initialState = {
   activeServiceBlocks: [],
   products: [],
+  reservedDates: [],
   orderProducts: [],
   singleProducts: [],
   fetching: true,
@@ -100,6 +121,10 @@ export const reservationSlice = createSlice({
     builder.addCase(fetchData.fulfilled, (state, { payload }) => {
       state.products = payload.data;
       state.fetching = false;
+    });
+    builder.addCase(reservationInfo.fulfilled, (state, { payload }) => {
+      console.log("this is payload", payload);
+      state.reservedDates = payload;
     });
     builder.addCase(orderData.fulfilled, (state, { payload }) => {
       console.log("order sent", payload);
