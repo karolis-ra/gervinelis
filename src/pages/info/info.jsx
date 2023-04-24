@@ -29,7 +29,7 @@ export const Info = () => {
     finalOrder.book_to = book_to;
     finalOrder.customer_note = e.target.comment.value;
 
-    // dispatch(orderData(finalOrder));
+    dispatch(orderData(finalOrder));
   };
 
   useEffect(() => {

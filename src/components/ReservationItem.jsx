@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BodyText } from "./BodyText";
 import { BodyTitle } from "./BodyTitle";
 import { FlexWrapper } from "./Wrappers/FlexWrapper";
@@ -22,8 +22,19 @@ export const ReservationItem = ({
   id,
   service,
   orderList,
+  cayakCount,
 }) => {
   const { isTablet, isXlgTablet } = useQuery();
+  const [countCayak, setCountCayak] = useState(0);
+
+  const addCayak = () => {
+    countCayak < 8 - cayakCount && setCountCayak(countCayak + 1);
+  };
+
+  const removeCayak = () => {
+    countCayak > 0 && setCountCayak(countCayak - 1);
+  };
+
   return (
     <FlexWrapper
       flexDirection={isXlgTablet ? "row" : "column"}
@@ -96,9 +107,13 @@ export const ReservationItem = ({
             )
           ) : (
             <StyledForm onSubmit={handleCayakOrder} id={id}>
-              <Image src="/images/minus.png" width="20px" />
-              <StyledInput type="number" id="qty" defaultValue={0} />
-              <Image src="/images/plus.png" width="20px" />
+              <Image
+                src="/images/minus.png"
+                width="20px"
+                onClick={removeCayak}
+              />
+              <StyledInput type="number" id="qty" value={countCayak} />
+              <Image src="/images/plus.png" width="20px" onClick={addCayak} />
             </StyledForm>
           )}
         </FlexWrapper>
@@ -120,6 +135,11 @@ const StyledInput = styled.input`
   height: 40px;
   text-align: center;
   font-size: 20px;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 const StyledButton = styled.button`

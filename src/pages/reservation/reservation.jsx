@@ -35,6 +35,7 @@ export const Reservation = () => {
   const dispatch = useDispatch();
   const [serviceList, setServiceList] = useState([]);
   const [filtereServiceList, setFilteredServiceList] = useState([]);
+  const [cayaksReserved, setCayaksReserved] = useState(0);
 
   useEffect(() => {
     if (book_from && book_to) {
@@ -50,13 +51,26 @@ export const Reservation = () => {
         const productSchedule = reservedDates.filter(
           ({ product_id }) => product_id === singleProduct.id
         );
-        console.log("productSchedule", productSchedule[0].booked_dates);
+        const dates = Object.keys(productSchedule[0].booked_dates);
+        const prod_id = productSchedule[0].product_id;
 
-        const isDateReserved = productSchedule[0].booked_dates.some(
-          (reservedDate) => {
-            return reservedDate >= book_from && reservedDate <= book_to;
+        const isDateReserved = dates.some((reservedDate) => {
+          if (
+            reservedDate >= book_from &&
+            reservedDate <= book_to &&
+            prod_id === 1
+          ) {
+            setCayaksReserved(
+              productSchedule[0].booked_dates[reservedDate].qty
+            );
+            console.log(cayaksReserved);
           }
-        );
+          return (
+            reservedDate >= book_from &&
+            reservedDate <= book_to &&
+            prod_id !== 1
+          );
+        });
 
         if (isDateReserved) {
           return null;
@@ -64,7 +78,6 @@ export const Reservation = () => {
         return filteredList.push(singleProduct);
       });
       setFilteredServiceList(filteredList);
-      console.log("this is filtered services", filtereServiceList);
     }
   }, [book_from, book_to, reservedDates]);
 
@@ -154,22 +167,22 @@ export const Reservation = () => {
             margin="0 0 40px 0"
           >
             <FlexWrapper
+              id={service}
               justifyContent="space-between"
               backgroundColor={COLORS.forestGreen}
               padding="16px 24px"
+              onClick={showHideServices}
             >
               <TitleText color={COLORS.white} mobFs="16px" fs="18px">
                 {title}
               </TitleText>
               <Image
-                id={service}
                 src={
                   serviceList.includes(service)
                     ? "./images/arr-up.png"
                     : "./images/arr-down.png"
                 }
                 width="14px"
-                onClick={showHideServices}
               />
             </FlexWrapper>
             <StyledBlock
@@ -199,6 +212,7 @@ export const Reservation = () => {
                       cancelOrder={cancelOrder}
                       service={service}
                       orderList={orderProducts}
+                      cayakCount={cayaksReserved}
                     />
                   );
                 }

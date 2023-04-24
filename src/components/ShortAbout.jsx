@@ -46,7 +46,7 @@ export const ShortAbout = ({
           deserunt excepturi quo fugit eveniet perferendis ex explicabo est,
           laborum rerum quia.
         </BodyText>
-        <Image src="./images/react-logo.png" width="45px" />
+        <Image src="./images/gervinelis_logo.png" width="100px" />
       </FlexWrapper>
       {isTablet && (
         <FlexWrapper alignItems={alignRightDoodle} marginBottom={marginBottom}>

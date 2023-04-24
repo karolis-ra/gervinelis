@@ -27,7 +27,7 @@ export const Navigation = () => {
     <>
       {isSmDesktop ? (
         <NavWrapper>
-          <Logo src="./images/react-logo.png" />
+          <Logo src="./images/gervinelis_logo.png" />
           <StyledWrapper
             flexDirection={isTablet ? "row" : "column"}
             justifyContent="center"
@@ -55,7 +55,7 @@ export const Navigation = () => {
         <>
           {!showModal && (
             <FlexWrapper justifyContent="space-between" padding="25px 15px">
-              <Logo src="./images/react-logo.png" />
+              <Logo src="./images/gervinelis_logo.png" />
               <FlexWrapper
                 gap="6px"
                 flexDirection="column"
@@ -101,6 +101,7 @@ const Bar = styled.div`
 `;
 
 const Logo = styled.img`
+  width: 80px;
   margin-right: 20px;
 `;
 
