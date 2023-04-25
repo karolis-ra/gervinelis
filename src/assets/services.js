@@ -9,9 +9,9 @@ export const services = [
     img: "./images/baidares_v2.png",
     title: "BAIDARĖS",
   },
-  {
-    service: "sauna",
-    img: "./images/pirtys.png",
-    title: "PIRTYS IR KUBILAI",
-  },
+  // {
+  //   service: "sauna",
+  //   img: "./images/pirtys.png",
+  //   title: "PIRTYS IR KUBILAI",
+  // },
 ];
