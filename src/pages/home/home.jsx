@@ -26,13 +26,13 @@ export const services = [
     id: "apgyvendinimas",
     img: "./images/apgyvendinimas.png",
   },
-  {
-    title: "PIRTYS IR KUBILAI",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti nesciunt laudantium facere nobis quaerat modi quibusdam doloremque aspernatur earum ipsa doloribus praesentium repellat ullam itaque rerum omnis, porro velit vel.",
-    id: "pirtysirkubilai",
-    img: "./images/pirtys.png",
-  },
+  // {
+  //   title: "PIRTYS IR KUBILAI",
+  //   description:
+  //     "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti nesciunt laudantium facere nobis quaerat modi quibusdam doloremque aspernatur earum ipsa doloribus praesentium repellat ullam itaque rerum omnis, porro velit vel.",
+  //   id: "pirtysirkubilai",
+  //   img: "./images/pirtys.png",
+  // },
 ];
 
 export const Home = () => {

@@ -21,6 +21,7 @@ import { DefaultButton } from "../../components/DefaultButton";
 import { BodyText } from "../../components/BodyText";
 import { Image } from "../../components/Image";
 import { useState } from "react";
+import { BodyTitle } from "../../components/BodyTitle";
 
 export const Reservation = () => {
   const { isTablet } = useQuery();
@@ -63,7 +64,6 @@ export const Reservation = () => {
             setCayaksReserved(
               productSchedule[0].booked_dates[reservedDate].qty
             );
-            console.log(cayaksReserved);
           }
           return (
             reservedDate >= book_from &&
@@ -159,6 +159,12 @@ export const Reservation = () => {
         const filteredProducts = filtereServiceList.filter((singleProduct) => {
           return singleProduct.key === service;
         });
+        const sauna = filtereServiceList.filter((singleProduct) => {
+          return singleProduct.key === "sauna";
+        });
+        const hotTub = filtereServiceList.filter((singleProduct) => {
+          return singleProduct.key === "hot_tub";
+        });
         return (
           <FlexWrapper
             flexDirection="column"
@@ -177,6 +183,8 @@ export const Reservation = () => {
                 {title}
               </TitleText>
               <Image
+                id={service}
+                onClick={showHideServices}
                 src={
                   serviceList.includes(service)
                     ? "./images/arr-up.png"
@@ -191,6 +199,8 @@ export const Reservation = () => {
               border="2px solid red"
               closed={!activeServiceBlocks.includes(service)}
             >
+              {!book_to && !book_from && <BodyTitle>Pasirinkite datą, kad matytumėte galimus variantus.</BodyTitle>}
+              {book_to && book_from && filteredProducts.length === 0 && <BodyTitle>Atsiprašome, bet šiomis dienomis laisvų paslaugų nėra.</BodyTitle>}
               {filteredProducts.map(
                 (
                   { key, id, name, currency, unit_price, description },
@@ -213,6 +223,8 @@ export const Reservation = () => {
                       service={service}
                       orderList={orderProducts}
                       cayakCount={cayaksReserved}
+                      sauna={sauna}
+                      hotTub={hotTub}
                     />
                   );
                 }

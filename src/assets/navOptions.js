@@ -3,6 +3,6 @@ export const navOptions = [
   // { title: "APIE MUS", link: "/apiemus" },
   { title: "BAIDARĖS", link: "/baidares" },
   { title: "APGYVENDINIMAS", link: "/apgyvendinimas" },
-  { title: "PIRTYS, KUBILAI", link: "/pirtysirkubilai" },
+  // { title: "PIRTYS, KUBILAI", link: "/pirtysirkubilai" },
   { title: "KONTAKTAI", link: "/kontaktai" },
 ];
