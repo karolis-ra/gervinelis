@@ -8,63 +8,84 @@ import { DefaultButton } from "./DefaultButton";
 import styled from "styled-components";
 import { Image } from "./Image";
 
-export const ItemOrderBlock = ({ price, handleOrder, id, orderList, service, cancelOrder, handleCayakOrder, cayakCount}) => {
-    const { isTablet} = useQuery();
-    const [countCayak, setCountCayak] = useState(0);
+export const ItemOrderBlock = ({
+  price,
+  handleOrder,
+  id,
+  orderList,
+  service,
+  cancelOrder,
+  handleCayakOrder,
+  cayakCount,
+  active,
+}) => {
+  const { isTablet } = useQuery();
+  const [countCayak, setCountCayak] = useState(0);
+  const addCayak = () => {
+    countCayak < 8 - cayakCount && setCountCayak(countCayak + 1);
+  };
 
-    const addCayak = () => {
-      countCayak < 8 - cayakCount && setCountCayak(countCayak + 1);
-    };
-  
-    const removeCayak = () => {
-      countCayak > 0 && setCountCayak(countCayak - 1);
-    };
-    return (
+  const removeCayak = () => {
+    countCayak > 0 && setCountCayak(countCayak - 1);
+  };
 
+  return (
+    <FlexWrapper
+      flexDirection="row"
+      flex="1"
+      alignItems={isTablet ? "flex-start" : "flex-start"}
+      justifyContent={isTablet ? "center" : "space-between"}
+      gap="12px"
+      padding="0 24px 0 0 "
+    >
+      <FlexWrapper
+        flexDirection={isTablet ? "column" : "row"}
+        width={isTablet ? "auto" : "100%"}
+        justifyContent={isTablet ? "" : "space-between"}
+        gap="12px"
+      >
         <FlexWrapper
-          flexDirection="row"
-          flex="1"
-          alignItems={isTablet ? "center" : "flex-start"}
-          justifyContent={isTablet ? "center" : "space-between"}
-          gap="12px"
-          padding="0 24px 0 0 "
+          flexDirection="column"
+          alignItems="flex-start"
+          minWidth="120px"
         >
-            <FlexWrapper flexDirection={isTablet ? "column" : "row"} width={isTablet ? "auto" : "100%"} justifyContent={isTablet ? "": "space-between"}>
-            <FlexWrapper flexDirection="column">
-            <BodyTitle alignSelf="flex-start" color={COLORS.gray}>
-              Kaina
-            </BodyTitle>
-            <TitleText align="left" color={COLORS.gray}>
-              {price} €
-            </TitleText>
-          </FlexWrapper>
-
-          {service !== "cayak" ? (
-            !orderList.some((item) => item.id === id) ? (
-              <DefaultButton id={id} onClick={handleOrder} alignself="flex-end">
-                PRIDETI
-              </DefaultButton>
-            ) : (
-              <StyledButton id={id} onClick={cancelOrder} alignself="flex-end">
-                ATŠAUKTI
-              </StyledButton>
-            )
-          ) : (
-            <StyledForm onSubmit={handleCayakOrder} id={id}>
-              <Image
-                src="/images/minus.png"
-                width="20px"
-                onClick={removeCayak}
-              />
-              <StyledInput type="number" id="qty" value={countCayak} />
-              <Image src="/images/plus.png" width="20px" onClick={addCayak} />
-            </StyledForm>
-          )}
-            </FlexWrapper>
-
+          <BodyTitle alignSelf="flex-start" color={COLORS.gray} align="left">
+            {service === "hot_tub" && "Kubilo kaina"}
+            {service === "sauna" && "Pirties kaina"}
+            {service === "cayak" && "Baidarės kaina"}
+            {service === "housing" && "Namelio kaina"}
+          </BodyTitle>
+          <TitleText align="left" color={COLORS.gray}>
+            {price} €
+          </TitleText>
         </FlexWrapper>
-    )
-}
+
+        {service !== "cayak" ? (
+          !orderList.some((item) => item.id === id) ? (
+            <DefaultButton
+              id={id}
+              onClick={handleOrder}
+              alignself="flex-start"
+              fs="15px"
+            >
+              PRIDETI
+            </DefaultButton>
+          ) : (
+            <StyledButton id={id} onClick={cancelOrder} alignself="flex-start">
+              ATŠAUKTI
+            </StyledButton>
+          )
+        ) : (
+          <StyledForm onSubmit={handleCayakOrder} id={id}>
+            <Image src="/images/minus.png" width="20px" onClick={removeCayak} />
+            <StyledInput type="number" id="qty" value={countCayak} />
+            <Image src="/images/plus.png" width="20px" onClick={addCayak} />
+          </StyledForm>
+        )}
+      </FlexWrapper>
+    </FlexWrapper>
+  );
+};
 
 const StyledForm = styled.form`
   display: flex;
@@ -87,12 +108,13 @@ const StyledInput = styled.input`
 `;
 
 const StyledButton = styled.button`
+  box-sizing: border-box;
   color: ${COLORS.white};
   background-color: ${COLORS.gray};
   padding: 12px 18px;
   border-radius: 8px;
-  align-self: flex-end;
+  align-self: flex-start;
   border: none;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
 `;

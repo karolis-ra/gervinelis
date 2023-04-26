@@ -57,11 +57,12 @@ export const SmallSlider = ({ images }) => {
 };
 
 const SliderWrapper = styled.div`
-  width: 100%;
   margin: 0 auto;
-
+  width: 100%;
+  flex: 1;
+  align-items: center;
   @media ${xlgTabletMF} {
-    max-width: 500px;
+    min-width: 450px;
   }
 `;
 

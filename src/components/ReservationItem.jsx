@@ -24,7 +24,6 @@ export const ReservationItem = ({
   hotTub,
 }) => {
   const { isTablet, isXlgTablet } = useQuery();
-  console.log(hotTub)
 
   return (
     <FlexWrapper
@@ -32,12 +31,10 @@ export const ReservationItem = ({
       flex="1 0 25%"
       gap="24px"
       margin={isTablet ? "50px 0 0 0 " : "24px 0 0 0"}
+      alignItems="center"
     >
       <SmallSlider images={images} />
-      <FlexWrapper
-
-        flexDirection= "column"
-      >
+      <FlexWrapper flexDirection="column">
         <FlexWrapper
           flexDirection="column"
           flex="2"
@@ -68,39 +65,42 @@ export const ReservationItem = ({
             })}
           </FlexWrapper>
         </FlexWrapper>
-        <FlexWrapper flexDirection={isTablet ? "row" : "column"} gap={isTablet ? "" : "24px"}>
-        <ItemOrderBlock   handleOrder={handleOrder}
-          cancelOrder={cancelOrder}
-          handleCayakOrder={handleCayakOrder}
-          id={id}
-          service={service}
-          orderList={orderList}
-          cayakCount={cayakCount}
-          price={price}
-        />
+        <FlexWrapper
+          flexDirection={isTablet ? "row" : "column"}
+          gap={isTablet ? "" : "24px"}
+        >
+          <ItemOrderBlock
+            handleOrder={handleOrder}
+            cancelOrder={cancelOrder}
+            handleCayakOrder={handleCayakOrder}
+            id={id}
+            service={service}
+            orderList={orderList}
+            cayakCount={cayakCount}
+            price={price}
+          />
           {service !== "cayak" && (
-          <ItemOrderBlock handleOrder={handleOrder}
-          cancelOrder={cancelOrder}
-          id={hotTub[0].id} 
-          service={hotTub[0].key}
-          price={hotTub[0].unit_price}
-          orderList={orderList}
-          />
-        )}
-        {service !== "cayak" && (
-          <ItemOrderBlock handleOrder={handleOrder}
-          cancelOrder={cancelOrder}
-          id={sauna[0].id} 
-          service={sauna[0].key}
-          price={sauna[0].unit_price}
-          orderList={orderList}
-          />
-        )}
+            <ItemOrderBlock
+              handleOrder={handleOrder}
+              cancelOrder={cancelOrder}
+              id={hotTub[0].id}
+              service={hotTub[0].key}
+              price={hotTub[0].unit_price}
+              orderList={orderList}
+            />
+          )}
+          {service !== "cayak" && (
+            <ItemOrderBlock
+              handleOrder={handleOrder}
+              cancelOrder={cancelOrder}
+              id={sauna[0].id}
+              service={sauna[0].key}
+              price={sauna[0].unit_price}
+              orderList={orderList}
+            />
+          )}
         </FlexWrapper>
-
       </FlexWrapper>
     </FlexWrapper>
   );
 };
-
-

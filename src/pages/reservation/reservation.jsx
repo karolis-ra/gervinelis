@@ -98,7 +98,8 @@ export const Reservation = () => {
     dispatch(addProducts(order));
   };
 
-  const cancelOrder = (id) => {
+  const cancelOrder = (e) => {
+    const id = e.target.id;
     const order = {};
     order.id = Number(id);
     order.qty = 0;
@@ -165,6 +166,10 @@ export const Reservation = () => {
         const hotTub = filtereServiceList.filter((singleProduct) => {
           return singleProduct.key === "hot_tub";
         });
+
+        const house = filtereServiceList.filter((singleProduct) => {
+          return singleProduct.key === "housing";
+        });
         return (
           <FlexWrapper
             flexDirection="column"
@@ -196,17 +201,29 @@ export const Reservation = () => {
             <StyledBlock
               flexDirection="column"
               id="serviceBlock"
-              border="2px solid red"
               closed={!activeServiceBlocks.includes(service)}
             >
-              {!book_to && !book_from && <BodyTitle>Pasirinkite datą, kad matytumėte galimus variantus.</BodyTitle>}
-              {book_to && book_from && filteredProducts.length === 0 && <BodyTitle>Atsiprašome, bet šiomis dienomis laisvų paslaugų nėra.</BodyTitle>}
+              {!book_to && !book_from && (
+                <BodyTitle>
+                  Pasirinkite datą, kad matytumėte galimus variantus.
+                </BodyTitle>
+              )}
+              {book_to && book_from && filteredProducts.length === 0 && (
+                <BodyTitle>
+                  Atsiprašome, bet šiomis dienomis laisvų paslaugų nėra.
+                </BodyTitle>
+              )}
               {filteredProducts.map(
-                (
-                  { key, id, name, currency, unit_price, description },
-                  index
-                ) => {
+                ({ id, name, unit_price, description }, index) => {
                   const desc = JSON.parse(description);
+
+                  const filteredSauna = sauna.filter((singleProduct) => {
+                    return singleProduct.name.includes(name);
+                  });
+
+                  const filteredHotTub = hotTub.filter((singleProduct) => {
+                    return singleProduct.name.includes(name);
+                  });
 
                   return (
                     <ReservationItem
@@ -223,8 +240,9 @@ export const Reservation = () => {
                       service={service}
                       orderList={orderProducts}
                       cayakCount={cayaksReserved}
-                      sauna={sauna}
-                      hotTub={hotTub}
+                      sauna={filteredSauna}
+                      hotTub={filteredHotTub}
+                      houses={service === "housing" && house}
                     />
                   );
                 }

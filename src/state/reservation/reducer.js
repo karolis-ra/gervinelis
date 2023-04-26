@@ -28,7 +28,6 @@ export const reservationInfo = createAsyncThunk(
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         return data;
       })
       .catch((error) => {
@@ -48,7 +47,6 @@ export const getProduct = createAsyncThunk(
         return response.json();
       })
       .then((data) => {
-        console.log("this is fetch data", data);
         return data;
       })
       .catch((error) => {
@@ -101,8 +99,10 @@ export const reservationSlice = createSlice({
       state.orderProducts.push(payload);
     },
     cancelProduct: (state, { payload }) => {
-      const index = state.orderProducts.indexOf(payload);
-      state.orderProducts.splice(index, 1);
+      // console.log("this is payload", payload)
+      // console.log(state.orderProducts)
+      // const index = state.orderProducts.indexOf(payload.id);
+      state.orderProducts = state.orderProducts.filter((item) => item.id !== payload.id);
     },
     addDate: (state, { payload }) => {
       const inputDate1 = new Date(payload[0]);
@@ -123,11 +123,9 @@ export const reservationSlice = createSlice({
       state.fetching = false;
     });
     builder.addCase(reservationInfo.fulfilled, (state, { payload }) => {
-      console.log("this is payload", payload);
       state.reservedDates = payload;
     });
     builder.addCase(orderData.fulfilled, (state, { payload }) => {
-      console.log("order sent", payload);
     });
     builder.addCase(getProduct.fulfilled, (state, { payload }) => {
       state.singleProducts.push(payload.data);
