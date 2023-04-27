@@ -22,10 +22,14 @@ export const Cayaks = () => {
         imageSrcLeft="./images/leaf-left-big.svg"
         imageSrcRight="./images/leaf-left-big.svg"
         width="150px"
-        padding="10px 40px"
+        padding="24px"
         transform="rotate(180deg)"
         alignLeftDoodle="flex-end"
         alignRightDoodle="flex-start"
+        heroText="Turbūt viena populiariausių šiltojo sezono pramogų, kuri visad buna
+        kupina nuotykių ir puikių patirčių. Esame įsikūrę gausiai vandens
+        apdovanotame krašte, todėl galime pasiūlyti istoriškai bei vizualiai
+        turtingą kelionę, kurioje, žinome, kad patirsite kur kas daugiau."
       />
       <FlexWrapper
         padding={isTablet ? "50px 10% 20px 10%" : "16px 24px"}

@@ -32,6 +32,7 @@ export const Reservation = () => {
     orderProducts,
     book_from,
     book_to,
+    fetching,
   } = useSelector(reservationSelector);
   const dispatch = useDispatch();
   const [serviceList, setServiceList] = useState([]);
@@ -81,6 +82,7 @@ export const Reservation = () => {
     }
   }, [book_from, book_to, reservedDates]);
 
+  console.log(filtereServiceList);
   const showHideServices = (e) => {
     dispatch(sectionControl(e.target.id));
     if (!serviceList.includes(e.target.id)) {
@@ -204,13 +206,21 @@ export const Reservation = () => {
               closed={!activeServiceBlocks.includes(service)}
             >
               {!book_to && !book_from && (
-                <BodyTitle>
+                <BodyTitle padding="24px">
                   Pasirinkite datą, kad matytumėte galimus variantus.
                 </BodyTitle>
               )}
-              {book_to && book_from && filteredProducts.length === 0 && (
-                <BodyTitle>
-                  Atsiprašome, bet šiomis dienomis laisvų paslaugų nėra.
+              {book_to &&
+                book_from &&
+                filteredProducts.length === 0 &&
+                !fetching && (
+                  <BodyTitle padding="24px">
+                    Atsiprašome, bet šiomis dienomis laisvų paslaugų nėra.
+                  </BodyTitle>
+                )}
+              {book_to && book_from && fetching && (
+                <BodyTitle padding="24px">
+                  Tikriname datas, prašome palaukti.
                 </BodyTitle>
               )}
               {filteredProducts.map(
@@ -251,7 +261,9 @@ export const Reservation = () => {
           </FlexWrapper>
         );
       })}
-      <DefaultButton to="/info">TOLIAU</DefaultButton>
+      {orderProducts.length > 0 && (
+        <DefaultButton to="/info">TOLIAU</DefaultButton>
+      )}
     </PageLayout>
   );
 };

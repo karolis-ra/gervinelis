@@ -27,21 +27,9 @@ export const ServiceCard = ({ title, description, price, perks, images }) => {
         <BodyText align="left" color={COLORS.gray}>
           {description}
         </BodyText>
-        <FlexWrapper flexWrap="wrap" gap="10px">
-          {perks.map((singlePerk, index) => {
-            return (
-              <BodyTitle
-                color={COLORS.forestGreen}
-                key={`perk-${index}`}
-                align="left"
-              >
-                {singlePerk}
-              </BodyTitle>
-            );
-          })}
-        </FlexWrapper>
+
         <TitleText align="left" color={COLORS.gray}>
-          {price}
+          {price} EUR
         </TitleText>
       </FlexWrapper>
     </FlexWrapper>

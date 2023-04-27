@@ -15,14 +15,14 @@ export const services = [
   {
     title: "PLAUKIMAS BAIDARĖMIS",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti nesciunt laudantium facere nobis quaerat modi quibusdam doloremque aspernatur earum ipsa doloribus praesentium repellat ullam itaque rerum omnis, porro velit vel.",
+      "Turbūt viena populiariausių šiltojo sezono pramogų, kuri visad buna kupina nuotykių ir puikių patirčių. Esame įsikūrę gausiai vandens apdovanotame krašte, todėl galime pasiūlyti istoriškai bei vizualiai turtingą kelionę, kurioje, žinome, kad patirsite kur kas daugiau. Išplaukti galite tiesiai iš mūsų teritorijos, kurioje galbūt būsite apsistoję, jei ne, tada galėsite saugiai palikti daiktus, automobilius. Siūlome plaukti iš Vilhelmo kanalo įplaukiant į Minijos upę. Kelionių maršrutai yra įvairūs, tiek pradedantiesiems tiek pažengusiems baidarininkams. Maršrutus galime derindi pagal Jūsų poreikius.",
     id: "baidares",
     img: "./images/cayak.png",
   },
   {
     title: "APGYVENDINIMAS",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti nesciunt laudantium facere nobis quaerat modi quibusdam doloremque aspernatur earum ipsa doloribus praesentium repellat ullam itaque rerum omnis, porro velit vel.",
+      "Mūsų nomuojami nameliai puikiai pasitarnaus Jūsų poilsiui, pagaminti iš naturalaus medžio, esantys gamtos ir ramybės apsuptyje, turintys visą reikiamą įranga poilsiui ir ramybei užtikrinti. Siūlome skirtingo dydžio ir komplektacijų namelius atsižvelgiant į jūsų poreikius. Drąsiausiems - nakvynę palapinėje ar hamake. Nameliai turi ir papildomų pramogų - pirtys ir kubilai.",
     id: "apgyvendinimas",
     img: "./images/apgyvendinimas.png",
   },

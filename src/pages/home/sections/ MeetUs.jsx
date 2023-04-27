@@ -34,10 +34,11 @@ export const MeetUs = () => {
             padding={isTablet && "0 80px 0 0"}
             align="left"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illum
-            placeat delectus veniam temporibus molestiae magni dolorum
-            repellendus eligendi at animi, tempora autem rerum praesentium
-            ratione maiores in quae quos.
+            Esame kaimo turizmo paslaugas teikianti bendruomenė, siekianti
+            suteikti visapusišką poilsį mažiems ir dideliems. Siūlydami ne tik
+            apgyvendinimą, pirtis bei kubilus, bet ir įvairias aktyvaus poilsio
+            paslaugas kaip baidarės, lauko sporto pramogos ir jaukius
+            susibūrimus prie laužaviečių.
           </BodyText>
         </FlexWrapper>
       </FlexWrapper>

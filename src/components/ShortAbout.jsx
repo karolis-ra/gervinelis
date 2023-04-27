@@ -18,6 +18,7 @@ export const ShortAbout = ({
   alignItems,
   alignLeftDoodle,
   alignRightDoodle,
+  heroText,
 }) => {
   const { isTablet } = useQuery();
   return (
@@ -40,12 +41,7 @@ export const ShortAbout = ({
         gap={isTablet ? "46px" : "34px"}
         padding={!isTablet && "24px"}
       >
-        <BodyText>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
-          exercitationem neque ut incidunt fugiat? Necessitatibus autem non rem
-          deserunt excepturi quo fugit eveniet perferendis ex explicabo est,
-          laborum rerum quia.
-        </BodyText>
+        <BodyText>{heroText}</BodyText>
         <Image src="./images/gervinelis_logo.png" width="100px" />
       </FlexWrapper>
       {isTablet && (

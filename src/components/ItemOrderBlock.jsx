@@ -17,7 +17,6 @@ export const ItemOrderBlock = ({
   cancelOrder,
   handleCayakOrder,
   cayakCount,
-  active,
 }) => {
   const { isTablet } = useQuery();
   const [countCayak, setCountCayak] = useState(0);
@@ -44,22 +43,23 @@ export const ItemOrderBlock = ({
         justifyContent={isTablet ? "" : "space-between"}
         gap="12px"
       >
-        <FlexWrapper
-          flexDirection="column"
-          alignItems="flex-start"
-          minWidth="120px"
-        >
-          <BodyTitle alignSelf="flex-start" color={COLORS.gray} align="left">
-            {service === "hot_tub" && "Kubilo kaina"}
-            {service === "sauna" && "Pirties kaina"}
-            {service === "cayak" && "Baidarės kaina"}
-            {service === "housing" && "Namelio kaina"}
-          </BodyTitle>
-          <TitleText align="left" color={COLORS.gray}>
-            {price} €
-          </TitleText>
-        </FlexWrapper>
+        {service !== "cayak" && (
+          <FlexWrapper
+            flexDirection="column"
+            alignItems="flex-start"
+            minWidth="120px"
+          >
+            <BodyTitle alignSelf="flex-start" color={COLORS.gray} align="left">
+              {service === "hot_tub" && "Kubilo kaina"}
+              {service === "sauna" && "Pirties kaina"}
+              {service === "housing" && "Namelio kaina"}
+            </BodyTitle>
 
+            <TitleText align="left" color={COLORS.gray}>
+              {price} €
+            </TitleText>
+          </FlexWrapper>
+        )}
         {service !== "cayak" ? (
           !orderList.some((item) => item.id === id) ? (
             <DefaultButton
@@ -77,9 +77,27 @@ export const ItemOrderBlock = ({
           )
         ) : (
           <StyledForm onSubmit={handleCayakOrder} id={id}>
-            <Image src="/images/minus.png" width="20px" onClick={removeCayak} />
-            <StyledInput type="number" id="qty" value={countCayak} />
-            <Image src="/images/plus.png" width="20px" onClick={addCayak} />
+            <FlexWrapper flexDirection="column">
+              <BodyTitle
+                alignSelf="flex-start"
+                color={COLORS.gray}
+                align="left"
+              >
+                Baidarės kaina
+              </BodyTitle>
+              <TitleText align="left" color={COLORS.gray}>
+                {price} €
+              </TitleText>
+            </FlexWrapper>
+            <FlexWrapper gap="15px" alignItems="center">
+              <Image
+                src="/images/minus.png"
+                width="20px"
+                onClick={removeCayak}
+              />
+              <StyledInput type="number" id="qty" value={countCayak} />
+              <Image src="/images/plus.png" width="20px" onClick={addCayak} />
+            </FlexWrapper>
           </StyledForm>
         )}
       </FlexWrapper>
@@ -89,8 +107,9 @@ export const ItemOrderBlock = ({
 
 const StyledForm = styled.form`
   display: flex;
+  width: 100%;
   align-items: center;
-  gap: 15px;
+  justify-content: space-between;
 `;
 
 const StyledInput = styled.input`

@@ -24,7 +24,6 @@ export const ReservationItem = ({
   hotTub,
 }) => {
   const { isTablet, isXlgTablet } = useQuery();
-
   return (
     <FlexWrapper
       flexDirection={isXlgTablet ? "row" : "column"}
