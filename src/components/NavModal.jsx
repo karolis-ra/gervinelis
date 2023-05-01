@@ -21,11 +21,11 @@ export const NavModal = () => {
       <FlexWrapper
         alignSelf="flex-end"
         width="45px"
-        padding="0 25px"
+        padding="0 35px"
         flex="2"
         onClick={closeNavModal}
       >
-        <Image src="./images/x_icon.png" />
+        <Image margin="35px 0 0 25px" src="./images/x_icon.png" />
       </FlexWrapper>
       <FlexWrapper
         flexDirection="column"

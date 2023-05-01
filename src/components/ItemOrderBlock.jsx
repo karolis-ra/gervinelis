@@ -20,12 +20,17 @@ export const ItemOrderBlock = ({
 }) => {
   const { isTablet } = useQuery();
   const [countCayak, setCountCayak] = useState(0);
-  const addCayak = () => {
+  const addCayak = (e) => {
     countCayak < 8 - cayakCount && setCountCayak(countCayak + 1);
+    handleCayakOrder(e.target.id, countCayak + 1);
   };
 
-  const removeCayak = () => {
+  const removeCayak = (e) => {
     countCayak > 0 && setCountCayak(countCayak - 1);
+    handleCayakOrder(
+      e.target.id,
+      countCayak === 0 ? countCayak : countCayak - 1
+    );
   };
 
   return (
@@ -76,7 +81,7 @@ export const ItemOrderBlock = ({
             </StyledButton>
           )
         ) : (
-          <StyledForm onSubmit={handleCayakOrder} id={id}>
+          <StyledForm>
             <FlexWrapper flexDirection="column">
               <BodyTitle
                 alignSelf="flex-start"
@@ -92,11 +97,17 @@ export const ItemOrderBlock = ({
             <FlexWrapper gap="15px" alignItems="center">
               <Image
                 src="/images/minus.png"
-                width="20px"
+                width="25px"
                 onClick={removeCayak}
+                id={id}
               />
               <StyledInput type="number" id="qty" value={countCayak} />
-              <Image src="/images/plus.png" width="20px" onClick={addCayak} />
+              <Image
+                id={id}
+                src="/images/plus.png"
+                width="25px"
+                onClick={addCayak}
+              />
             </FlexWrapper>
           </StyledForm>
         )}
@@ -110,6 +121,7 @@ const StyledForm = styled.form`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  gap: 50px;
 `;
 
 const StyledInput = styled.input`

@@ -29,4 +29,5 @@ export const FlexWrapper = styled.div`
   background-image: url(${(props) => props.bgImage});
   background-size: cover;
   background-position: center;
+  background-color: ${(props) => props.bgColor};
 `;

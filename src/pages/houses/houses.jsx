@@ -7,7 +7,6 @@ import { useQuery } from "../../styles/breakpoints";
 import { COLORS } from "../../styles/colors";
 import { ServiceBlock } from "../home/sections/ServiceBlock";
 import { services } from "../home/home";
-import { houses } from "../../assets/houses";
 import { ServiceCard } from "../../components/ServiceCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../state/reservation/reducer";
@@ -30,8 +29,6 @@ export const Houses = () => {
       setHousingList(houses);
     }
   }, [products]);
-
-  console.log(housingList);
   return (
     <PageLayout
       heroText="APGYVENDINIMAS"

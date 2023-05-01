@@ -98,10 +98,17 @@ export const reservationSlice = createSlice({
     addProducts: (state, { payload }) => {
       state.orderProducts.push(payload);
     },
+    handleCayaks: (state, { payload }) => {
+      if (state.orderProducts.some(item => item.id === payload.id)) {
+        state.orderProducts = state.orderProducts.map(item =>
+          item.id === payload.id ? { ...item, qty: payload.qty } : item
+        );
+        state.orderProducts = state.orderProducts.filter(item => item.qty > 0);
+      } else {
+        state.orderProducts.push(payload);
+      }
+    },
     cancelProduct: (state, { payload }) => {
-      // console.log("this is payload", payload)
-      // console.log(state.orderProducts)
-      // const index = state.orderProducts.indexOf(payload.id);
       state.orderProducts = state.orderProducts.filter((item) => item.id !== payload.id);
     },
     addDate: (state, { payload }) => {
@@ -116,6 +123,9 @@ export const reservationSlice = createSlice({
       state.book_from = outputDateStr1;
       state.book_to = outputDateStr2;
     },
+    clearSingleProducts: (state) => {
+      state.singleProducts = [];
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, { payload }) => {
@@ -136,6 +146,7 @@ export const reservationSlice = createSlice({
 export const {
   sectionControl,
   addProducts,
+  handleCayaks,
   addDate,
   clearSingleProducts,
   cancelProduct,

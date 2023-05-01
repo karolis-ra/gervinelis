@@ -13,6 +13,8 @@ import {
   sectionControl,
   addProducts,
   cancelProduct,
+  handleCayaks,
+  clearSingleProducts,
 } from "../../state/reservation/reducer";
 import { fetchData } from "../../state/reservation/reducer";
 import { reservationInfo } from "../../state/reservation/reducer";
@@ -82,7 +84,6 @@ export const Reservation = () => {
     }
   }, [book_from, book_to, reservedDates]);
 
-  console.log(filtereServiceList);
   const showHideServices = (e) => {
     dispatch(sectionControl(e.target.id));
     if (!serviceList.includes(e.target.id)) {
@@ -112,9 +113,15 @@ export const Reservation = () => {
     addOrder(e.target.id, 1);
   };
 
-  const handleCayakOrder = (e) => {
-    e.preventDefault();
-    addOrder(e.target.id, e.target.elements.qty.value);
+  const handleCayakOrder = (id, qty) => {
+    const order = {};
+    order.id = Number(id);
+    order.qty = qty;
+    dispatch(handleCayaks(order));
+  };
+
+  const clearSingle = () => {
+    dispatch(clearSingleProducts());
   };
 
   return (
@@ -262,7 +269,9 @@ export const Reservation = () => {
         );
       })}
       {orderProducts.length > 0 && (
-        <DefaultButton to="/info">TOLIAU</DefaultButton>
+        <DefaultButton to="/info" onClick={clearSingle}>
+          TOLIAU
+        </DefaultButton>
       )}
     </PageLayout>
   );
@@ -271,7 +280,7 @@ export const Reservation = () => {
 const StyledBlock = styled.div`
   gap: 20px;
   overflow-x: hidden;
-  max-height: ${(props) => (props.closed === true ? "0px" : "6000px")};
+  max-height: ${(props) => (props.closed === true ? "0px" : "auto")};
   transition: all 0.5s ease-in-out;
 `;
 
