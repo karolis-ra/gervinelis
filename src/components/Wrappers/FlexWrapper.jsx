@@ -30,4 +30,5 @@ export const FlexWrapper = styled.div`
   background-size: cover;
   background-position: center;
   background-color: ${(props) => props.bgColor};
+  z-index: ${(props) => props.zIndex};
 `;

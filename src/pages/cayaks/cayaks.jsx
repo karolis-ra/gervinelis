@@ -9,6 +9,8 @@ import { routes } from "../../assets/route";
 import { RouteCard } from "../../components/RouteCard";
 import { ServiceBlock } from "../home/sections/ServiceBlock";
 import { services } from "../home/home";
+import { DefaultButton } from "../../components/DefaultButton";
+
 export const Cayaks = () => {
   const { isTablet } = useQuery();
   return (
@@ -50,6 +52,9 @@ export const Cayaks = () => {
               />
             );
           })}
+        </FlexWrapper>
+        <FlexWrapper padding="50px" justifyContent="center">
+          <DefaultButton to="/rezervacija">REZERVUOKITE</DefaultButton>
         </FlexWrapper>
         <TitleText color={COLORS.gray} align="left" margin="40px 0 25px 0">
           PAPILDOMAI SIŪLOME

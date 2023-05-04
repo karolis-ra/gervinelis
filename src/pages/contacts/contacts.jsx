@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BodyTitle } from "../../components/BodyTitle";
 import { PageLayout } from "../../components/Layouts/PageLayout";
 import { Link } from "react-router-dom";
@@ -12,6 +12,9 @@ import { tabletMF } from "../../styles/breakpoints";
 
 export const Contacts = () => {
   const { isTablet } = useQuery();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <PageLayout>

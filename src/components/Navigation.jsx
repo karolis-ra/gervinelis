@@ -55,7 +55,10 @@ export const Navigation = () => {
         <>
           {!showModal && (
             <FlexWrapper justifyContent="space-between" padding="25px 15px">
-              <Logo src="./images/gervinelis_logo.png" />
+              <Link to="/">
+                <Logo src="./images/gervinelis_logo.png" />
+              </Link>
+
               <FlexWrapper
                 gap="6px"
                 flexDirection="column"

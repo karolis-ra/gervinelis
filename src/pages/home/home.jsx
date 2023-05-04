@@ -87,7 +87,7 @@ export const Home = () => {
           <Text align="center" fs="18px" fw="600" color={COLORS.gray}>
             Turite klausimų?
           </Text>
-          <DefaultButton>SUSISIEKITE</DefaultButton>
+          <DefaultButton to="/kontaktai">SUSISIEKITE</DefaultButton>
         </FlexWrapper>
       </PageLayout>
     </>

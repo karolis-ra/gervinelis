@@ -55,7 +55,7 @@ export const Footer = () => {
         })}
       </FlexWrapper>
       <Image src="./images/gervinelis_logo.png" width="100px" margin="0 auto" />
-      <Text>© Copyrights gknkodas.lt</Text>
+      {/* <Text>© Copyrights gknkodas.lt</Text> */}
     </FlexWrapper>
   );
 };

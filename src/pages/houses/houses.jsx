@@ -11,7 +11,7 @@ import { ServiceCard } from "../../components/ServiceCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../state/reservation/reducer";
 import { reservationSelector } from "../../state/reservation/selector";
-
+import { DefaultButton } from "../../components/DefaultButton";
 export const Houses = () => {
   const { products } = useSelector(reservationSelector);
   const { isXlgTablet, isTablet } = useQuery();
@@ -66,6 +66,9 @@ export const Houses = () => {
               />
             );
           })}
+        </FlexWrapper>
+        <FlexWrapper padding="50px" justifyContent="center">
+          <DefaultButton to="/rezervacija">REZERVUOKITE</DefaultButton>
         </FlexWrapper>
         <TitleText color={COLORS.gray} align="left" margin="40px 0 25px 0">
           PAPILDOMAI SIŪLOME

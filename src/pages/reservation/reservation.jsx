@@ -191,12 +191,13 @@ export const Reservation = () => {
               justifyContent="space-between"
               backgroundColor={COLORS.forestGreen}
               padding="16px 24px"
-              onClick={showHideServices}
+              // onClick={showHideServices}
             >
               <TitleText color={COLORS.white} mobFs="16px" fs="18px">
                 {title}
               </TitleText>
               <Image
+                padding="0 0 0 50px"
                 id={service}
                 onClick={showHideServices}
                 src={
