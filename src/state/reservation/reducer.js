@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+var host = "176.223.135.73";
+// var host = "api.gervinelis.lt";
+
 export const fetchData = createAsyncThunk("data/fetchData", async () => {
-  return await fetch("http://176.223.135.73/api/products")
+  return await fetch("http://"+ host +"/api/products")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response error");
