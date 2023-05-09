@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-var host = "176.223.135.73";
-// var host = "api.gervinelis.lt";
+// var host = "176.223.135.73";
+var host = "https://api.gervinelis.lt";
 
 export const fetchData = createAsyncThunk("data/fetchData", async () => {
-  return await fetch("http://"+ host +"/api/products")
+  return await fetch(`${host}/api/products`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response error");
@@ -23,7 +23,7 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
 export const reservationInfo = createAsyncThunk(
   "data/reservationInfo",
   async () => {
-    return await fetch("http://176.223.135.73/api/booking-time/get-all")
+    return await fetch(`${host}/api/booking-time/get-all`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response error");
@@ -42,7 +42,7 @@ export const reservationInfo = createAsyncThunk(
 export const getProduct = createAsyncThunk(
   "data/getProduct",
   async (productId) => {
-    return await fetch(`http://176.223.135.73/api/products/${productId}`)
+    return await fetch(`${host}/api/products/${productId}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response error");
@@ -60,7 +60,7 @@ export const getProduct = createAsyncThunk(
 
 export const orderData = createAsyncThunk("data/orderData", async (order) => {
   console.log("this is order going to server", JSON.stringify(order));
-  const response = await fetch("http://176.223.135.73/api/order/create", {
+  const response = await fetch(`${host}/api/order/create`, {
     method: "POST",
     cors: "no-cors",
     headers: {
