@@ -69,8 +69,8 @@ const SliderWrapper = styled.div`
 const StyledSlider = styled(Slider)`
   .slick-dots {
     top: 84%;
-    left: 35%;
-    width: 30%;
+    left: 25%;
+    width: 50%;
   }
 
   .slick-dots li button:before {
@@ -82,13 +82,13 @@ const StyledSlider = styled(Slider)`
 const StyledNextImage = styled(Image)`
   position: absolute;
   top: 90%;
-  right: 25%;
+  right: 15%;
 `;
 
 const StyledPrevImage = styled(Image)`
   position: absolute;
   top: 90%;
-  left: 25%;
+  left: 15%;
   z-index: 1;
 `;
 

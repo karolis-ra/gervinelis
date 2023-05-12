@@ -29,6 +29,7 @@ function SamplePrevArrow(props) {
       src="./images/slider-arr-left.png"
       className={className}
       onClick={onClick}
+      zIndex="5"
       alt="react-prev"
     />
   );
@@ -73,25 +74,38 @@ export const SimpleSlider = () => {
               key={index}
               border={`1px solid ${COLORS.creme}`}
               padding="16px 0"
+              height="100%"
+              flexDirection="column"
+              justifyContent="space-around"
+              display="flex"
             >
-              <Text fw="600" color={COLORS.forestGreen} align="center">
-                {name}
-              </Text>
-              <Text
-                align="center"
-                margin="16px 0"
-                padding=" 0 24px"
-                height="250px"
-                color={COLORS.gray}
+              <FlexWrapper
+                flexDirection="column"
+                height="100%"
+                justifyContent="space-between"
               >
-                {review}
-              </Text>
-              <Image
-                src="./images/5stars.png"
-                width="132px"
-                margin="0 auto"
-                padding="8px 0 16px 0"
-              />
+                <FlexWrapper flexDirection="column">
+                  <Text fw="600" color={COLORS.forestGreen} align="center">
+                    {name}
+                  </Text>
+                  <Text
+                    align="center"
+                    margin="16px 0"
+                    padding=" 0 24px"
+                    height="250px"
+                    color={COLORS.gray}
+                  >
+                    {review}
+                  </Text>
+                </FlexWrapper>
+
+                <Image
+                  src="./images/5stars.png"
+                  width="132px"
+                  margin="0 auto"
+                  padding="8px 0 16px 0"
+                />
+              </FlexWrapper>
             </FlexWrapper>
           );
         })}
@@ -118,6 +132,18 @@ const StyledSlider = styled(Slider)`
 
   div.card {
     width: 100px;
+  }
+
+  .slick-track {
+    display: flex !important;
+  }
+
+  .slick-slide {
+    height: inherit !important;
+  }
+
+  div.slick-slide > div:not([class]) {
+    height: 88% !important;
   }
 `;
 

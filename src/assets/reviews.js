@@ -12,12 +12,12 @@ export const reviews = [
   {
     name: "Inga",
     review:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, ex debitis quidem aut fugit sed dolorum, obcaecati atque dicta iure voluptatibus quam consectetur laudantium tempora, ea deleniti? Doloremque, magni inventore",
+      " obcaecati atque dicta iure voluptatibus quam consectetur laudantium tempora, ea deleniti? Doloremque, magni inventore",
   },
   {
     name: "Karolis",
     review:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, ex debitis quidem aut fugit sed dolorum, obcaecati atque dicta iure voluptatibus quam consectetur laudantium tempora, ea deleniti? Doloremque, magni inventore",
+      " ex debitis quidem aut fugit sed dolorum, obcaecati atque dicta iure voluptatibus quam consectetur laudantium tempora, ea deleniti? Doloremque, magni inventore",
   },
   {
     name: "Rokas",
